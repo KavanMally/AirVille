@@ -5,21 +5,18 @@ public Agent():
 
     private float RateOfProcess; - rate at which agent can process customer at check in line
     private boolean isMovable = false; - agent is stuck at current line
-    private static final int SPEED_UP_MODIFIER;
-    private static final int SLOW_DOWN_MODIFIER;
-
-
-
-    public Regular() - subclass of Agent, has less authority
+    private static final float SPEED_UP_MODIFIER;
+        - modifier for improvements in ticket processing, such as supervisor speed bonus
+        - Prerequisite: > 1
 
     public Supervisor() - subclass of Agent, has more actions/authority
 
-         RateOfProcess *= 2; - can process customers faster than normal agent
-         private boolean isFlexible = true; - can work both person and automated booth
-         private int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
+        RateOfProcess *= SPEED_UP_MODIFIER; - can process customers faster than normal agent
+        private boolean isFlexible = true; - can work both person and automated booth
+        private int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
 
-         public void moveSupervisor(Line line); - move supervisor to indicated line
-         public void sideLine(); - remove supervisor from check-in, not permanent
+        public void moveSupervisor(Line line); - move supervisor to indicated line
+        public void sideLine(); - remove supervisor from check-in, not permanent
 
 public Line():
 
@@ -37,22 +34,27 @@ public Line():
 
 
     public PersonLine() - subclass of Line, handles booth operated solely by people
+
+        public PersonLine();
+            - constructor of PersonLine
+            - starts off with an agent at booth
         public void processPassenger(Passenger passenger);
-            - checks
+            - process passenger's ticket
 
     public AutomatedLine() - subclass of Line, handles processing mainly by terminals
 
-         private Queue availableTerminal;
+        private static final int TERMINALS_PER_AGENT;
+            - preset number of terminals single agent can float around
+
+        private Queue availableTerminal;
             - Collection of terminals available
-            - Design provides no indication of distinguishable terminals besides availability
+            - Design provides no indication of distinguishable terminals
+                besides availability, therefore individual tracking of terminals pointless
             - first terminal in queue passed to next available passenger
 
         public AutomatedLine();
             - constructor of AutomatedLine
             - initially starts off with all its terminals available
-
-        private static final int TERMINALS_PER_AGENT;
-            - preset number of terminals single agent can float around
 
 
         public void processPassenger(Passenger passenger);
