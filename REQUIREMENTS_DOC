@@ -1,0 +1,74 @@
+Setting: Check-in counter at airport
+Objective: manage counters and airline agents
+
+Main cycle:
+    passengers queue at line
+    Types of lines:
+        - in person
+            * requires an agent and/or supervisor to operate
+            * frequent flier (priority, no worry about starvation)
+        - automated
+            * frequent flier (no priority given, float around preset terminals)
+            * require only a single agent per preset number of terminals
+            * line only keeps track of users waiting to use group of terminals
+
+    Terminal Properties:
+        - assume terminals are never wears down or bricks
+        - process passenger's ticket
+        - if passenger unable to operate terminal or passenger redirected pass passenger to person queue
+
+    Agent Properties:
+
+        can oversee in person line or automation line
+
+        supervisors
+            * float between lines
+            * passengers processed faster than regular
+            * when he enters booth, works WITH agent rather than REPLACE agent
+            * can work both person and automated booth
+            * default: start with 1 (can pay for more)
+            * able to shift supervisor or sideline him as reserve
+
+        regular
+            * check people out
+            * in person line or float around automation line
+            * stuck at indicated line once chosen
+
+
+    Passenger Properties:
+        - generated randomly over time
+        - autonomously queue at check-in line
+        - Occasionally redirected from automated line to person line
+            * design does not indicate when so assuming redirected after hitting terminal
+        - Enter as either single or part of group
+        - Passenger competence:
+            * use automation without assistance (not all)
+        - once past our booth not our problem anymore
+        - we assume every passenger CAN be processed
+            * no fake tickets
+            * not a criminal/terrorist
+        - may have excess baggage
+
+    point system/Diamonds/Cash shop:
+        - currency: real money
+            * Can buy: Diamonds
+        - currency: in game Diamonds
+            * can be earned in game by processing large group of 10+ passengers in less
+              than 5 minutes
+            * Can buy:
+                * more supervisors
+                * Diamonds (game currency)
+                * extra check in lines
+        - credit card handling
+
+
+    Time-consuming passenger
+        - options:
+            * move supervisor to line
+            * buy more supervisors
+            * create more check-in lines
+        causes: (all require person line)
+            * passenger with excess baggage, needing more time for weight check and fees
+            * passenger repeatedly re-routed (requires supervisor), blocking queue
+            * plane overbooked
+
