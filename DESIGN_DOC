@@ -1,6 +1,4 @@
 
-
-
 public Agent():
 
     private float RateOfProcess; - rate at which agent can process customer at check in line
@@ -46,6 +44,9 @@ public Line():
         private static final int TERMINALS_PER_AGENT;
             - preset number of terminals single agent can float around
 
+        private int numberOfTerminals;
+            - number of terminals in booth
+
         private Queue availableTerminal;
             - Collection of terminals available
             - Design provides no indication of distinguishable terminals
@@ -59,12 +60,13 @@ public Line():
 
         public void processPassenger(Passenger passenger);
             - allocates a terminal to the passenger
+            -
 
         private void removeAvailableTerminal(Terminal terminal);
             - removes first terminal from queue when it is allocated to passenger
 
         public void addAvailableTerminal(Terminal terminal);
-            - returns terminal to availableQueue when it finishes processing passneger
+            - returns terminal to availableQueue when it finishes processing passenger
 
 
 public Terminal():
@@ -80,13 +82,35 @@ public Terminal():
 
 public Passenger():
 
-    private boolean inLine; - indicates whether the
     private boolean isFrequentFlier;
         - indicates whether passenger has frequent flier status
         - frequent flier entitles passenger to higher priority in check-in line
+    private boolean slowProcess;
+        - if true increases processing time
+        - else process time unmodified
+    private boolean requireManager;
+        - if true passenger can only be processed at intervention of supervisor
 
-    public Passenger(); - constructor, automatically move to line on generation
+    public Passenger();
+        - constructor, automatically move to line on generation
+        - determines on creation whether the passenger will be a slowProcess or not
+        - determines whether passenger requires a manager to process them
 
     private void enterLine(Line line);
         - passes passenger to desired line
         - private so it is not exposed and manipulated to scripted line entering
+
+    public boolean getFrequentFlier();
+        - get method returns isFrequentFlier
+    public boolean getSlowProcess();
+        - get method returns slowProcess
+    public boolean getRequireManager();
+        - get method returns requireManager;
+
+public Shop():
+
+    public void buyDiamonds();
+        - brings up prompt that allows user to purchase with credit card
+    public void buyWithDiamonds();
+        - brings up prompt of game items that the user can buy diamonds
+        - as these can be subject to change, we will not specifically define items to be purchased here
