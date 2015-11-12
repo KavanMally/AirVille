@@ -55,22 +55,26 @@ public Line():
             - preset number of terminals single agent can float around
 
 
-
-        public void redirectPassenger();
-            - redirects passenger to person line
-            - since we're assuming passenger only redirected at front of terminal
-
         public void processPassenger(Passenger passenger);
-            -
+            - allocates a terminal to the passenger
 
-        private void removeAvailableTerminal(
+        private void removeAvailableTerminal(Terminal terminal);
+            - removes first terminal from queue when it is allocated to passenger
+
+        public void addAvailableTerminal(Terminal terminal);
+            - returns terminal to availableQueue when it finishes processing passneger
 
 
 public Terminal():
 
-    public void useTerminal(Passenger passenger);
-        -
+    public boolean useTerminal(Passenger passenger);
+        - processes passenger's ticket
+                * if successful passenger leaves terminal and exits booth
+                * else redirected to personLine
 
+    private void redirectPassenger(Passenger passenger);
+        - redirects passenger to person line
+        - since we're assuming passenger only redirected at front of terminal
 
 public Passenger():
 
