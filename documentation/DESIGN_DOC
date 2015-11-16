@@ -7,7 +7,7 @@ public Agent():
         - rate at which agent can process customer at check in line
 
     public InPersonAgent(): - subclass of Agent
-        - GOAL: Personally process tickets at PersonLine
+        - GOAL: Personally process tickets at Objects.Lines.PersonLine
 
         private float RateOfProcess;
             - rate at which agent can process customer at check in line
@@ -120,7 +120,7 @@ public Line():
             - first terminal in queue passed to next available passenger
 
         public AutomatedLine();
-            - constructor of AutomatedLine
+            - constructor of Objects.Lines.AutomatedLine
             - initially starts off with all its terminals available
 
 
@@ -142,7 +142,7 @@ public Terminal():
 
     public Terminal(Agent agent);
         - constructor for Terminal
-        - initializes object and assign Agent to monitor this terminal
+        - initializes object and assign Objects.Agents.Agent to monitor this terminal
 
     public boolean useTerminal(Passenger passenger);
         - processes passenger's ticket
@@ -154,7 +154,9 @@ public Terminal():
         - since we're assuming passenger only redirected at front of terminal
 
     private void requestAssistance();
-        -
+        - allows passenger to request aid from supervising agent
+        - needed if ticket cannot be processed either through technical errors or inability
+        - might redirect passenger if problem persists
 
 public Passenger():
     - GOAL: easily creatable objects that enter random queue to processed
