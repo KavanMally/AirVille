@@ -3,15 +3,22 @@ public Agent():
 
     - GOAL: Facilitate ticket processing at designated workstation
 
-    private float RateOfProcess; - rate at which agent can process customer at check in line
+    private float RateOfProcess;
+        - rate at which agent can process customer at check in line
 
     public InPersonAgent(): - subclass of Agent
         - GOAL: Personally process tickets at PersonLine
 
+        private float RateOfProcess;
+            - rate at which agent can process customer at check in line
 
         public InPersonAgent();
             - constructor of InPersonAgent
-            - initializes variables
+            - initializes RateOfProcess to default value
+
+        public InPersonAgent(float rate);
+            - constructor of InPersonAgent
+            - initializes RateOfProcess to rate value
 
         public void processTicket(Passenger passenger);
             - Process passenger
@@ -19,13 +26,19 @@ public Agent():
     public TerminalAgent(): - subclass of Agent
         - GOAL: Provide assistance to passengers in TerminalLine
 
+        private float RateOfProcess;
+            - rate at which agent can process customer at check in line
 
         private Queue helpLine;
             - assist passengers who need help with terminal on FIFO
 
         public TerminalAgent();
             - constructor of TerminalAgent
-            - initializes variables
+            - initializes RateOfProcess to default value
+
+        public TerminalAgent(float rate);
+            - constructor of TerminalAgent
+            - initializes RateOfProcess to rate value
 
 
 
@@ -170,6 +183,7 @@ public Passenger():
 
 public Shop():
     - GOAL: set up interface for shop team to interact and develop on
+    - IMPORTANT: should only allow one running instance of shop, otherwise exploitable
 
     public void buyDiamonds();
         - brings up prompt that allows user to purchase with credit card
