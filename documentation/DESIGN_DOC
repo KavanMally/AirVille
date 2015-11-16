@@ -1,22 +1,58 @@
 
 public Agent():
 
+    - GOAL: Facilitate ticket processing at designated workstation
+
     private float RateOfProcess; - rate at which agent can process customer at check in line
-    private boolean isMovable = false; - agent is stuck at current line
-    private static final float SPEED_UP_MODIFIER;
-        - modifier for improvements in ticket processing, such as supervisor speed bonus
-        - Prerequisite: > 1
 
-    public Supervisor() - subclass of Agent, has more actions/authority
+    public InPersonAgent(): - subclass of Agent
+        - GOAL: Personally process tickets at PersonLine
 
-        RateOfProcess *= SPEED_UP_MODIFIER; - can process customers faster than normal agent
-        private boolean isFlexible = true; - can work both person and automated booth
-        private int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
 
-        public void moveSupervisor(Line line); - move supervisor to indicated line
-        public void sideLine(); - remove supervisor from check-in, not permanent
+        public InPersonAgent();
+            - constructor of InPersonAgent
+            - initializes variables
+
+        public void processTicket(Passenger passenger);
+            - Process passenger
+
+    public TerminalAgent(): - subclass of Agent
+        - GOAL: Provide assistance to passengers in TerminalLine
+
+
+        private Queue helpLine;
+            - assist passengers who need help with terminal on FIFO
+
+        public TerminalAgent();
+            - constructor of TerminalAgent
+            - initializes variables
+
+
+
+        public void provideAssistance(Terminal terminal);
+            - provides assistance to passenger at Terminal terminal
+
+
+public Supervisor() - separate entity from Agent, has more authority/functionality
+    - GOAL: Supervisor should move around and aid/hide at direction of user
+
+    private float RateOfProcess;
+        - rate at which agent can process customer.
+        - should be greater than Agent's RateOfProcess
+
+    private int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
+
+    public Supervisor();
+        - constructor of Supervisor
+        - initialize variables
+
+    public void moveSupervisor(Line line); - move supervisor to indicated line
+    public void sideLine(); - remove supervisor from check-in, not permanent
+
 
 public Line():
+    - GOAL: handles queue of passengers looking to process their tickets
+
 
     private Queue line;
         - data structure that handles query of passengers
@@ -32,8 +68,8 @@ public Line():
         - begins processing pop() passenger for flight
         - exact implementation varies by subclass line
 
-
     public PersonLine() - subclass of Line, handles booth operated solely by people
+        - GOAL: handle queue for people entering ticket processing booth done by human
 
         private PriorityQueue line;
             - Queue to enter booth
@@ -45,7 +81,10 @@ public Line():
         public void processPassenger();
             - processes passenger with frequent flier, if none then process queue as normal
 
+
     public AutomatedLine() - subclass of Line, handles processing mainly by terminals
+    - GOAL: handle queue for people entering ticket processing booth done by terminal
+
 
         private static final int TERMINALS_PER_AGENT;
             - preset number of terminals single agent can float around
@@ -77,8 +116,15 @@ public Line():
         public void addAvailableTerminal(Terminal terminal);
             - returns terminal to availableQueue when it finishes processing passenger
 
-
 public Terminal():
+    - GOAL: facilitate ticket processing done by terminal
+
+    private Agent assignedAgent; - Agent assigned to troubleshoot this terminal
+    private float RateOfProcess; - rate at which normal use of terminal will process ticket
+
+    public Terminal(Agent agent);
+        - constructor for Terminal
+        - initializes object and assign Agent to monitor this terminal
 
     public boolean useTerminal(Passenger passenger);
         - processes passenger's ticket
@@ -89,7 +135,12 @@ public Terminal():
         - redirects passenger to person line
         - since we're assuming passenger only redirected at front of terminal
 
+    private void requestAssistance();
+        -
+
 public Passenger():
+    - GOAL: easily creatable objects that enter random queue to processed
+
 
     private boolean isFrequentFlier;
         - indicates whether passenger has frequent flier status
@@ -99,6 +150,7 @@ public Passenger():
         - else process time unmodified
     private boolean requireManager;
         - if true passenger can only be processed at intervention of supervisor
+
 
     public Passenger();
         - constructor, automatically move to line on generation
@@ -117,6 +169,7 @@ public Passenger():
         - get method returns requireManager;
 
 public Shop():
+    - GOAL: set up interface for shop team to interact and develop on
 
     public void buyDiamonds();
         - brings up prompt that allows user to purchase with credit card
