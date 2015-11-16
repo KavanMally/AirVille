@@ -24,13 +24,14 @@ public Agent():
             - Process passenger
 
     public TerminalAgent(): - subclass of Agent
-        - GOAL: Provide assistance to passengers in TerminalLine
+        - GOAL: Provide assistance to passengers in AutomatedLine
 
         private float RateOfProcess;
             - rate at which agent can process customer at check in line
 
         private Queue helpLine;
             - assist passengers who need help with terminal on FIFO
+
 
         public TerminalAgent();
             - constructor of TerminalAgent
@@ -57,7 +58,11 @@ public Supervisor() - separate entity from Agent, has more authority/functionali
 
     public Supervisor();
         - constructor of Supervisor
-        - initialize variables
+        - initialize RateOfProcess to default value
+
+    public Supervisor(float rate);
+        - constructor of Supervisor
+        - initializes RateOfProcess to rate
 
     public void moveSupervisor(Line line); - move supervisor to indicated line
     public void sideLine(); - remove supervisor from check-in, not permanent
@@ -88,10 +93,10 @@ public Line():
             - Queue to enter booth
             - Gives higher priority to passengers with frequent flier status
 
-        public PersonLine();
+        public PersonLine(Agent agent);
             - constructor of PersonLine
             - starts off with an agent at booth
-        public void processPassenger();
+        private void processPassenger();
             - processes passenger with frequent flier, if none then process queue as normal
 
 
