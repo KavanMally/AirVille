@@ -1,6 +1,7 @@
 package Objects.Agents;
 
 import Objects.Agents.Agent;
+import Objects.Terminal.Terminal;
 
 import java.util.Queue;
 
@@ -9,23 +10,22 @@ import java.util.Queue;
  */
 public class TerminalAgent extends Agent {
 
-    private float rateOfProcess;
     private Queue helpLine;
 
 
-    private final float DEFAULT_VALUE = (float) 1.0;
-
-
     public TerminalAgent(){
-        rateOfProcess = DEFAULT_VALUE;
+        super();
     }
 
-    public TerminalAgent(float rateOfProcess){
-        this.rateOfProcess = rateOfProcess;
+    public TerminalAgent(long timeOfProcess){
+        super(timeOfProcess);
     }
 
 
     public void provideAssistance(Terminal terminal){
 
+
+        //finished task
+        
     }
 }

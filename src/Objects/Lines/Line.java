@@ -1,5 +1,7 @@
 package Objects.Lines;
 
+import Objects.Passenger.Passenger;
+
 import java.util.Queue;
 
 /**

@@ -5,20 +5,21 @@ import Objects.Lines.Line;
 /**
  * Created by kavan on 11/15/15.
  */
-public class Supervisor {
+public class Supervisor extends Agent {
 
-    private float rateOfProcess;
-
-    private final float DEFAULT_VALUE = (float)2.0;
-
+    private final static long DEFAULT_VALUE = 2000; //default value unique to Supervisor
     private int MAX_NUMBER_OF_SUPERVISORS = 1;
 
     public Supervisor(){
-        rateOfProcess = DEFAULT_VALUE;
+        super(DEFAULT_VALUE);
     }
 
-    public Supervisor(float rateOfProcess){
-        this.rateOfProcess = rateOfProcess;
+    /**
+     * Warning! Possible to create supervisor with work rate slower than normal agents
+     * @param timeOfProcess
+     */
+    public Supervisor(long timeOfProcess){
+        this.timeToProcess = timeOfProcess;
     }
 
 
