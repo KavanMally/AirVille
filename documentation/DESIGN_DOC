@@ -125,7 +125,7 @@ public Line():
             - allocates a terminal to the pop() passenger
             - terminal begins processing passenger's ticket
 
-        private void removeAvailableTerminal(Terminal terminal);
+        private Terminal removeAvailableTerminal();
             - removes first terminal from queue when it is allocated to passenger
 
         public void addAvailableTerminal(Terminal terminal);

@@ -10,18 +10,16 @@ import java.util.Queue;
  */
 public class Line {
 
-    Queue line;
+    Queue<Passenger> line;
     private boolean inUse; //possibly deprecated
     Agent agent;
 
 
-    public Line(Agent agent){
-        this.agent = agent;
-    }
+    public Line(Agent agent){ this.agent = agent; }
 
-    public void addPassenger(Passenger passenger){
+    public void addPassenger(Passenger passenger) { line.add(passenger); }
 
-    }
+    public Passenger getPassenger(){ return line.poll(); }
 
 
 }
