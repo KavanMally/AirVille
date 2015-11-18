@@ -41,7 +41,7 @@ public class AutomatedLine extends Line {
     public void addAvailableTerminal(Terminal terminal){
         availableTerminal.add(terminal);
     }
-    
+
 
     private ArrayList<Terminal> createMultipleTerminals(){
 
