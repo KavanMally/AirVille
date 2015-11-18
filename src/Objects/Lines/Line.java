@@ -1,5 +1,6 @@
 package Objects.Lines;
 
+import Objects.Agents.Agent;
 import Objects.Passenger.Passenger;
 
 import java.util.Queue;
@@ -9,9 +10,14 @@ import java.util.Queue;
  */
 public class Line {
 
-    private Queue line;
-
+    Queue line;
     private boolean inUse; //possibly deprecated
+    Agent agent;
+
+
+    public Line(Agent agent){
+        this.agent = agent;
+    }
 
     public void addPassenger(Passenger passenger){
 

@@ -110,17 +110,14 @@ public Line():
         private int numberOfTerminals;
             - number of terminals in booth
 
-        private Queue line;
-            - Queue to enter booth
-
         private Queue availableTerminal;
             - Collection of terminals available
             - Design provides no indication of distinguishable terminals
                 besides availability, therefore individual tracking of terminals pointless
             - first terminal in queue passed to next available passenger
 
-        public AutomatedLine();
-            - constructor of Objects.Lines.AutomatedLine
+        public AutomatedLine(Agent agent);
+            - constructor of AutomatedLine
             - initially starts off with all its terminals available
 
 

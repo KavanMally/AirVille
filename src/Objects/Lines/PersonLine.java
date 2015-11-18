@@ -9,10 +9,10 @@ import java.util.PriorityQueue;
  */
 public class PersonLine extends Line {
 
-    private PriorityQueue priorityQueue;
 
     public PersonLine(Agent agent){
-
+        super(agent);
+        line = new PriorityQueue();
     }
 
     private void processPassenger(){
