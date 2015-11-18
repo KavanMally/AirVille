@@ -1,5 +1,7 @@
 package Tests.misc;
 
+import Objects.Shop.Shop;
+
 public class SleepMessages {
     public static void main(String args[])
             throws InterruptedException {
@@ -9,6 +11,7 @@ public class SleepMessages {
                 "Little lambs eat ivy",
                 "A kid will eat ivy too"
         };
+
 
         for (int i = 0;
              i < importantInfo.length;

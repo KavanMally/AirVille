@@ -9,7 +9,7 @@ public class Shop {
     private static Shop shop = null;
 
     protected Shop(){}
-    
+
     public static Shop getShop(){
         if(shop == null)
             shop = new Shop();

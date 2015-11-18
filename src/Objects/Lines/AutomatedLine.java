@@ -2,6 +2,7 @@ package Objects.Lines;
 
 import Objects.Agents.Agent;
 import Objects.Agents.InPersonAgent;
+import Objects.Passenger.Passenger;
 import Objects.Terminal.Terminal;
 
 import java.util.ArrayList;
@@ -31,8 +32,13 @@ public class AutomatedLine extends Line {
 
     public void processPassenger(){
 
+        Passenger passenger = getPassenger();
+        Terminal terminal = removeAvailableTerminal();
+
+        terminal.run();
 
     }
+
 
     private Terminal removeAvailableTerminal(){
         return availableTerminal.poll();
