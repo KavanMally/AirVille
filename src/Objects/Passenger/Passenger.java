@@ -10,6 +10,7 @@ public class Passenger implements Comparable<Passenger> {
     private boolean isFrequentFlier;
     private boolean slowProcess;
     private boolean requireManager;
+    private boolean needTechSupport;
 
     private Random random;
 
@@ -35,6 +36,7 @@ public class Passenger implements Comparable<Passenger> {
     }
 
 
+    //todo: comment the hell out of project (AND DELETE THESE TODOS!!!!!)
 
     public boolean getFrequentFlier(){ return isFrequentFlier; }
     public boolean getSlowProcess(){ return slowProcess; }

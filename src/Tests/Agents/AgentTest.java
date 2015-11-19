@@ -17,6 +17,8 @@ public class AgentTest {
     Supervisor supervisor;
 
 
+    //todo create more tests
+
     @Before
     public void initialize(){
 

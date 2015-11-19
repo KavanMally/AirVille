@@ -1,8 +1,5 @@
 package Objects.Agents;
 
-import Objects.Agents.Agent;
-import Objects.Terminal.Terminal;
-
 import java.util.Queue;
 
 /**
@@ -21,11 +18,12 @@ public class TerminalAgent extends Agent {
         super(timeOfProcess);
     }
 
-
+    //TODO fill in
     public void provideAssistance(Terminal terminal){
 
 
         //finished task
+        this.actionSequence();
 
     }
 }

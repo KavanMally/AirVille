@@ -1,9 +1,8 @@
 package Objects.Lines;
 
 import Objects.Agents.Agent;
-import Objects.Agents.InPersonAgent;
 import Objects.Passenger.Passenger;
-import Objects.Terminal.Terminal;
+import Objects.Agents.Terminal;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -35,7 +34,8 @@ public class AutomatedLine extends Line {
         Passenger passenger = getPassenger();
         Terminal terminal = removeAvailableTerminal();
 
-        terminal.run();
+        terminal.actionSequence();
+        //todo: add terminal back to list
 
     }
 

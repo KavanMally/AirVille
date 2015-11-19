@@ -1,6 +1,6 @@
-package Tests.Terminal;
+package Tests.Agents;
 
-import Objects.Terminal.Terminal;
+import Objects.Agents.Terminal;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class TerminalTest {
 
 
     @Test
-    public void start(){
-        terminal.run();
+    public void test(){
+        terminal.actionSequence();
     }
 }
