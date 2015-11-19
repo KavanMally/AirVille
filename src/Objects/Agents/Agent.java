@@ -23,7 +23,7 @@ public class Agent {
 
 
     //assuming that any action in the game can be represented by a pause
-    void actionSequence(){
+    public void actionSequence(){
         try {
             Thread.sleep(timeToProcess);
         } catch (InterruptedException e) {

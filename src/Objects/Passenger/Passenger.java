@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by kavan on 11/15/15.
  */
-public class Passenger {
+public class Passenger implements Comparable<Passenger> {
 
     private boolean isFrequentFlier;
     private boolean slowProcess;
@@ -16,22 +16,22 @@ public class Passenger {
     public Passenger(){
 
         random = new Random();
-        randomIsFrequentFlier(random.nextBoolean());
-        randomSlowProcess(random.nextBoolean());
-        randomRequireManager(random.nextBoolean());
+        randomIsFrequentFlier();
+        randomSlowProcess();
+        randomRequireManager();
 
     }
 
-    private void randomIsFrequentFlier(boolean random){
-        isFrequentFlier = random;
+    private void randomIsFrequentFlier(){
+        isFrequentFlier = random.nextBoolean();
     }
 
-    private void randomSlowProcess(boolean random){
-        slowProcess = random;
+    private void randomSlowProcess(){
+        slowProcess = random.nextBoolean();
     }
 
-    private void randomRequireManager(boolean random){
-        requireManager = random;
+    private void randomRequireManager(){
+        requireManager = random.nextBoolean();
     }
 
 
@@ -39,4 +39,12 @@ public class Passenger {
     public boolean getFrequentFlier(){ return isFrequentFlier; }
     public boolean getSlowProcess(){ return slowProcess; }
     public boolean getRequireManager(){ return requireManager; }
+
+
+    @Override
+    public int compareTo(Passenger o) {
+        if(o.getFrequentFlier())
+            return 1;
+        else return -1;
+    }
 }

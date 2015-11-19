@@ -8,6 +8,7 @@ public class Terminal extends Thread {
 
     private long runTime;
     private final static long DEFAULT_VALUE = 1500;
+    private Thread thread;
 
 
     public Terminal(){
@@ -16,7 +17,9 @@ public class Terminal extends Thread {
     }
     public Terminal(long runTime){
         this.runTime = runTime;
+        thread = new Thread ();
     }
+
 
     public void run(){
         try {
