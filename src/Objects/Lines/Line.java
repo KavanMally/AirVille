@@ -1,6 +1,7 @@
 package Objects.Lines;
 
 import Objects.Agents.Agent;
+import Objects.Agents.Supervisor;
 import Objects.Passenger.Passenger;
 
 import java.util.Queue;
@@ -12,14 +13,34 @@ public class Line {
 
     Queue<Passenger> line;
     private boolean inUse; //possibly deprecated
-    Agent agent;
+    private Agent agent;
+    private boolean hasSupervisor;
 
+    Supervisor supervisor;
 
     public Line(Agent agent){ this.agent = agent; }
 
     public void addPassenger(Passenger passenger) { line.add(passenger); }
 
     public Passenger getPassenger(){ return line.poll(); }
+
+    public Agent getAgent(){ return agent; }
+
+    public void acceptSupervisor(Supervisor supervisor) {
+        this.supervisor = supervisor;
+        hasSupervisor = true;
+    }
+
+    public void removeSupervisor(){
+        supervisor = null;
+        hasSupervisor = false;
+    }
+
+
+
+
+
+
 
 
 }

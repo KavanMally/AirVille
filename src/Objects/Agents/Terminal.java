@@ -1,6 +1,6 @@
 package Objects.Agents;
 
-import Objects.Agents.Agent;
+import Objects.Passenger.Passenger;
 
 /**
  * Created by kavan on 11/15/15.
@@ -14,17 +14,41 @@ public class Terminal extends Agent {
 
     public Terminal(){
 
-        timeToProcess = DEFAULT_VALUE;
+        super(DEFAULT_VALUE);
     }
     public Terminal(long runTime){
-        timeToProcess = runTime;
+        super(runTime);
     }
 
-    public void processTicket(){
-        super.actionSequence();
+
+
+
+
+    public void processTicket(Passenger passenger){
+
+        if(passenger.getNeedTechSupport()){
+            requestAssistance(passenger);
+        }
+
+
+
+        super.actionSequence(passenger, getTimeToProcess());
+
+
+
+
 
     }
 
+
+    public void redirectPassenger(Passenger passenger){
+
+    }
+
+
+    private void requestAssistance(Passenger passenger) {
+
+    }
 
 
 }

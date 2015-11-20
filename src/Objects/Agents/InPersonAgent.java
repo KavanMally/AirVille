@@ -21,7 +21,10 @@ public class InPersonAgent extends Agent {
 
 
     public void processTicket(Passenger passenger){
-        actionSequence();
+
+
+
+        actionSequence(passenger);
     }
 
 }

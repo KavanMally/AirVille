@@ -1,14 +1,19 @@
 package Objects.Agents;
 
+import Objects.Lines.Line;
+import Objects.Passenger.Passenger;
+
 /**
  * Created by kavan on 11/15/15.
  */
 public class Agent {
 
 
-    final long DEFAULT_VALUE = 1000; //1 second
+    final long DEFAULT_VALUE = 10000; //1 second
 
-    long timeToProcess; //represented in milliseconds
+    private long timeToProcess; //represented in milliseconds
+
+    private static final int MODIFIER = 2;
 
 
     public Agent(){
@@ -20,19 +25,42 @@ public class Agent {
     }
 
 
-
-
-    //assuming that any action in the game can be represented by a pause
-    public void actionSequence(){
-        try {
-            Thread.sleep(timeToProcess);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public long getTimeToProcess(){
+        return timeToProcess;
     }
 
 
 
+    //assuming that any action in the game can be represented by a pause
+    public void actionSequence(Passenger passenger, long timeToProcess){
+
+        long temp = modifyTimeToProcess(passenger);
+
+
+        try {
+
+            Thread.sleep(temp);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public long modifyTimeToProcess(Passenger passenger){
+
+        if(passenger.getSlowProcess())
+            return timeToProcess / MODIFIER;
+        else return timeToProcess;
+
+    }
+
+
+    public void waitForHelp(Line line){
+
+
+
+    }
 
 
 }

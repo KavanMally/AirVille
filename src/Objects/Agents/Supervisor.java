@@ -7,7 +7,7 @@ import Objects.Lines.Line;
  */
 public class Supervisor extends Agent {
 
-    private final static long DEFAULT_VALUE = 2000; //default value unique to Supervisor
+    private final static long DEFAULT_VALUE = 5000; //default value unique to Supervisor
     private int MAX_NUMBER_OF_SUPERVISORS = 1;
 
     public Supervisor(){
@@ -19,7 +19,7 @@ public class Supervisor extends Agent {
      * @param timeOfProcess
      */
     public Supervisor(long timeOfProcess){
-        this.timeToProcess = timeOfProcess;
+        super(timeOfProcess);
     }
 
     //TODO fill in

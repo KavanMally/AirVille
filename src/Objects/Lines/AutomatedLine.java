@@ -34,7 +34,7 @@ public class AutomatedLine extends Line {
         Passenger passenger = getPassenger();
         Terminal terminal = removeAvailableTerminal();
 
-        terminal.actionSequence();
+        terminal.processTicket(passenger);
         //todo: add terminal back to list
 
     }

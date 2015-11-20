@@ -1,5 +1,7 @@
 package Objects.Passenger;
 
+import Objects.Lines.Line;
+
 import java.util.Random;
 
 /**
@@ -20,8 +22,14 @@ public class Passenger implements Comparable<Passenger> {
         randomIsFrequentFlier();
         randomSlowProcess();
         randomRequireManager();
+        randomNeedTechSupport();
+    }
+
+
+    public void enterLine(Line line){
 
     }
+
 
     private void randomIsFrequentFlier(){
         isFrequentFlier = random.nextBoolean();
@@ -35,12 +43,18 @@ public class Passenger implements Comparable<Passenger> {
         requireManager = random.nextBoolean();
     }
 
+    private void randomNeedTechSupport(){
+        needTechSupport = random.nextBoolean();
+    }
+
+
 
     //todo: comment the hell out of project (AND DELETE THESE TODOS!!!!!)
 
     public boolean getFrequentFlier(){ return isFrequentFlier; }
     public boolean getSlowProcess(){ return slowProcess; }
     public boolean getRequireManager(){ return requireManager; }
+    public boolean getNeedTechSupport(){ return needTechSupport; }
 
 
     @Override
