@@ -29,7 +29,9 @@ public class InPersonAgent extends Agent {
     public void processTicket(Passenger passenger){
 
         setBusy(true);
-        actionSequence(passenger, getTimeToProcess());
+        //actionSequence(passenger, getTimeToProcess());
+        setActionLabel("InPersonAgent processing passenger's ticket: ");
+        System.out.println( getActionLabel() + modifyTimeToProcess(passenger) + " ms");
         setBusy(false);
     }
 

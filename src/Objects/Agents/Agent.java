@@ -21,6 +21,7 @@ public class Agent {
 
     private boolean busy; //indicates whether agent is handling passenger
 
+    private String actionLabel; //string to be displayed on println
 
     public Agent(){
         timeToProcess = DEFAULT_VALUE;
@@ -37,6 +38,7 @@ public class Agent {
      * @param passenger to whom action is directed towards
      * @param timeToProcess how long it will take (unit milliseconds)
      */
+    @Deprecated
     public void actionSequence(Passenger passenger, long timeToProcess){
 
         checkPassenger(passenger); //checks if require supervisor
@@ -145,6 +147,11 @@ public class Agent {
     public boolean getBusy(){ return busy;}
 
     public void setBusy(boolean busy){ this.busy = busy; }
+
+    public void setActionLabel(String string){ actionLabel = string;}
+    public String getActionLabel(){ return actionLabel; }
+
+    public boolean getPairedWithSupervisor(){ return pairedWithSupervisor;}
 
 
 }

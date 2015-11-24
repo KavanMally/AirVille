@@ -24,6 +24,8 @@ public class TerminalAgent extends Agent {
      * @param passenger
      */
     public void provideAssistance(Passenger passenger){
-        this.actionSequence(passenger, getTimeToProcess());
+        //this.actionSequence(passenger, getTimeToProcess());
+        setActionLabel("Terminal agent providing technical assistance to passenger: ");
+        System.out.println(getActionLabel() + modifyTimeToProcess(passenger) + " ms");
     }
 }

@@ -46,11 +46,6 @@ public class Line {
         agent.separateFromSupervisor();
     }
 
-
-
-
-
-
-
+    public boolean getHasSupervisor(){ return hasSupervisor; }
 
 }

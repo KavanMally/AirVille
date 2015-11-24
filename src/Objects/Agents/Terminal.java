@@ -37,8 +37,10 @@ public class Terminal extends Agent {
 
         if(passenger.getNeedTechSupport())
             requestAssistance(passenger);
-        else
-            super.actionSequence(passenger, getTimeToProcess());
+        else{
+            setActionLabel("Terminal processing passenger's ticket: ");
+            System.out.println(getActionLabel() + modifyTimeToProcess(passenger) + " ms");
+        }
 
         setBusy(false);
     }

@@ -1,6 +1,9 @@
 package Tests.Passenger;
 
+import Objects.Agents.TerminalAgent;
+import Objects.Lines.AutomatedLine;
 import Objects.Passenger.Passenger;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,24 +13,24 @@ import org.junit.Test;
 public class PassengerTest {
 
     Passenger passenger;
-
+    AutomatedLine automatedLine;
 
     @Before
     public void init(){
 
         passenger = new Passenger();
-
-
+        automatedLine = new AutomatedLine(new TerminalAgent());
 
     }
 
     @Test
-    public void test(){
-        System.out.println("wait 1 sec");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void testEnterLine(){
+
+
+        passenger.enterLine(automatedLine);
+        assertEquals(passenger, automatedLine.getPassenger());
+
+
+
     }
 }
