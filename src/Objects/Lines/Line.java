@@ -13,7 +13,7 @@ public class Line {
 
     Queue<Passenger> line;
     private boolean inUse; //possibly deprecated
-    private Agent agent;
+    Agent agent;
     private boolean hasSupervisor;
 
     Supervisor supervisor;

@@ -11,8 +11,9 @@ public class Supervisor  {
 
     private int MAX_NUMBER_OF_SUPERVISORS = 1;
     private boolean inLine;
-    private int MODIFIER;
+    private final int MODIFIER;
 
+    private Line line;
 
 
     public Supervisor(){
@@ -23,17 +24,31 @@ public class Supervisor  {
         MODIFIER = modifier;
     }
 
+    /**
+     * Moves supervisor from current line to new line
+     * Handles case where supervisor has not been set to line yet
+     * Also handles dereferencing from old line
+     * @param line
+     */
     public void moveSupervisor(Line line){
+        if(null != this.line)
+            line.removeSupervisor();
         line.acceptSupervisor(this);
+        this.line = line;
     }
 
 
+    /**
+     * Removes supervisor from any line
+     * Handles case where supervisor is not in any line
+     */
     public void sideLine(){
+
+        if(null != line)
+            line.removeSupervisor();
+
         inLine = false;
     }
-
-
-    public void setInLine(boolean inLine){ this.inLine = inLine;}
 
     public boolean getInLine(){ return inLine;}
 

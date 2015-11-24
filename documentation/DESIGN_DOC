@@ -114,11 +114,11 @@ public Agent():
 public Supervisor() - separate entity from Agent, has more authority/functionality
     - GOAL: Supervisor should move around and aid/hide at direction of user
 
-    private float RateOfProcess;
+    private float timeToProcess;
         - rate at which agent can process customer.
         - should be greater than Agent's RateOfProcess
 
-    private int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
+    private final int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
 
     private boolean inLine; - indicates whether supervisor is working or sidelined
 

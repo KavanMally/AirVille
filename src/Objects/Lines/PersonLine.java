@@ -22,6 +22,7 @@ public class PersonLine extends Line {
         line = new PriorityQueue<>();
     }
 
+    //TODO: DO AGENTS HANDLE PROCESSING OR DO LINE????????????????
     private void processPassenger(){
         Passenger passenger = line.poll();
         agent.actionSequence();
