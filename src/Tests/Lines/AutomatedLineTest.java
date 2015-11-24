@@ -41,8 +41,10 @@ public class AutomatedLineTest {
         automatedLine = new AutomatedLine(terminalAgent);
 
         automatedLine.addPassenger(new Passenger(false));
+        automatedLine.addPassenger(new Passenger(false));
         automatedLine.addPassenger(new Passenger(true));
 
+        //todo: bug: invoking comparator when it should be fifo
         assertFalse(passenger.getFrequentFlier());
 
     }

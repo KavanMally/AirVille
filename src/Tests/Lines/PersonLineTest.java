@@ -24,6 +24,7 @@ public class PersonLineTest {
 
         personLine = new PersonLine(new InPersonAgent());
         passenger = new Passenger();
+        supervisor = new Supervisor();
 
     }
 

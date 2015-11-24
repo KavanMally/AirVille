@@ -8,6 +8,7 @@ import Objects.Agents.Terminal;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by kavan on 11/15/15.
@@ -19,7 +20,7 @@ public class AutomatedLine extends Line {
 
     public AutomatedLine(TerminalAgent agent){
         super(agent);
-        line = new LinkedList<>();
+        line = new LinkedBlockingQueue<>();
         terminal = new Terminal(agent);
 
     }

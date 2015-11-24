@@ -64,11 +64,13 @@ public class AgentTest {
     @Test
     public void testSeparateFromSupervisor(){
 
+        inPersonAgent.pairUpWithSupervisor(supervisor);
         inPersonAgent.separateFromSupervisor();
-        assertTrue(inPersonAgent.getPairedWithSupervisor());
+        assertTrue(!inPersonAgent.getPairedWithSupervisor());
 
+        terminal.pairUpWithSupervisor(supervisor);
         terminal.separateFromSupervisor();
-        assertTrue(terminal.getPairedWithSupervisor());
+        assertTrue(!terminal.getPairedWithSupervisor());
     }
 
     @Test
@@ -76,8 +78,11 @@ public class AgentTest {
 
         long comp1 = inPersonAgent.modifyTimeToProcess(passenger);
         long comp2 = inPersonAgent.getTimeToProcess();
+        int temp;
+        if(passenger.getSlowProcess()) temp = 2;
+        else temp = 1;
 
-        assertEquals(comp1, comp2 * 2);
+        assertEquals(comp1, comp2 * temp);
 
 
 
