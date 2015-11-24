@@ -7,8 +7,15 @@ import Objects.Lines.Line;
  */
 public class Supervisor extends Agent {
 
+
+    //TODO: remove from Agent superclass, does not function same as normal agent
+    //more of a facilitator than a doer
+
     private final static long DEFAULT_VALUE = 5000; //default value unique to Supervisor
     private int MAX_NUMBER_OF_SUPERVISORS = 1;
+    private boolean inLine;
+
+    private int MODIFIER = 2;
 
     public Supervisor(){
         super(DEFAULT_VALUE);
@@ -25,5 +32,18 @@ public class Supervisor extends Agent {
     //TODO fill in
     public void moveSupervisor(Line line){
 
+
     }
+
+
+    public void sideLine(){
+        inLine = false;
+    }
+
+
+    public void setInLine(boolean inLine){ this.inLine = inLine;}
+
+    public boolean getInLine(){ return inLine;}
+
+    public int getMODIFIER(){ return MODIFIER; }
 }

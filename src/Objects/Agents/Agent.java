@@ -19,6 +19,8 @@ public class Agent {
 
     private final long checkFrequency = 1;
 
+    private Supervisor pairedSupervisor = null;
+
 
     public Agent(){
         timeToProcess = DEFAULT_VALUE;
@@ -40,6 +42,29 @@ public class Agent {
         if(passenger.getRequireManager()){
             waitForHelp();
         }
+    }
+
+
+    public void pairUpWithSupervisor(Supervisor supervisor){
+
+        pairedSupervisor = supervisor;
+
+        pairedWithSupervisor = true;
+
+
+
+        timeToProcess /= supervisor.getMODIFIER();
+    }
+
+    public void separateFromSupervisor(){
+
+        timeToProcess *= pairedSupervisor.getMODIFIER();
+
+        pairedWithSupervisor = false;
+
+
+        pairedSupervisor = null;
+
     }
 
 

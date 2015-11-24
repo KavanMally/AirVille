@@ -5,6 +5,32 @@ public Agent():
 
     private float RateOfProcess;
         - rate at which agent can process customer at check in line
+    private boolean pairedWithSupervisor;
+        - indicates whether supervisor is overseeing agent's booth
+
+    public void actionSequence(Passenger passenger, long timeToProcess);
+                - sleeps for (timeToProcess * 1000) milliseconds
+                - emulates the ticket processing without the actual processing
+
+
+    public long modifyTimeToProcess(Passenger passenger);
+        - checks if passenger is a slow process
+        - if slow, increases time needed to complete an actionSequence for passenger
+
+
+    public void checkPassenger(Passenger passenger);
+        - Go through passenger's conditions and modify actions based on them
+        - Only checks booleans that require different functions, not modify current ones
+
+
+    public void pairUpWithSupervisor(Supervisor supervisor);
+        - inspired by Fire Emblem Awakening's Pair Up system
+        -
+
+    public void separateFromSupervisor();
+        - split supervisor from agent
+        - useful when moving supervisor to different line or sidelining him
+
 
     public InPersonAgent(): - subclass of Agent
         - GOAL: Personally process tickets at Objects.Lines.PersonLine
@@ -20,20 +46,11 @@ public Agent():
             - constructor of InPersonAgent
             - initializes RateOfProcess to rate value
 
-        public void checkPassenger(Passenger passenger);
-            - Go through passenger's conditions and modify actions based on them
-            - Only checks booleans that require different functions, not modify current ones
 
 
 
-        public void actionSequence(Passenger passenger, long timeToProcess);
-            - sleeps for (timeToProcess * 1000) milliseconds
-            - emulates the ticket processing without the actual processing
 
 
-        public long modifyTimeToProcess(Passenger passenger);
-            - checks if passenger is a slow process
-            - if slow, increases time needed to complete an actionSequence for passenger
 
     public TerminalAgent(): - subclass of Agent
         - GOAL: Provide assistance to passengers in AutomatedLine
@@ -66,6 +83,9 @@ public Supervisor() - separate entity from Agent, has more authority/functionali
 
     private int MAX_NUMBER_OF_SUPERVISORS = 1; - default number of supervisors, can be increased
 
+    private boolean inLine; - indicates whether supervisor is working or sidelined
+
+
     public Supervisor();
         - constructor of Supervisor
         - initialize RateOfProcess to default value
@@ -96,6 +116,14 @@ public Line():
         - begins processing pop() passenger for flight
         - exact implementation varies by subclass line
 
+
+    public acceptSupervisor(Supervisor supervisor);
+        -
+
+    public void removeSupervisor();
+        -
+
+
     public PersonLine() - subclass of Line, handles booth operated solely by people
         - GOAL: handle queue for people entering ticket processing booth done by human
 
@@ -108,6 +136,7 @@ public Line():
             - starts off with an agent at booth
         private void processPassenger();
             - processes passenger with frequent flier, if none then process queue as normal
+
 
 
     public AutomatedLine() - subclass of Line, handles processing mainly by a terminal
