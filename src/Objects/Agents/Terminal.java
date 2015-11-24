@@ -9,8 +9,8 @@ import Objects.Passenger.Passenger;
 public class Terminal extends Agent {
 
 
-    private final static long DEFAULT_VALUE = 1500;
-    private TerminalAgent terminalAgent;
+    private final static long DEFAULT_VALUE = 5000; //default value which should be lower than normal agent
+    private TerminalAgent terminalAgent; //agent assigned to troubleshoot this terminal
 
 
     public Terminal(TerminalAgent terminalAgent){
@@ -18,8 +18,8 @@ public class Terminal extends Agent {
         super(DEFAULT_VALUE);
         this.terminalAgent = terminalAgent;
     }
-    public Terminal(TerminalAgent terminalAgent, long runTime){
-        super(runTime);
+    public Terminal(TerminalAgent terminalAgent, long timeToProcess){
+        super(timeToProcess);
         this.terminalAgent = terminalAgent;
 
     }

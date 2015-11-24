@@ -1,11 +1,9 @@
 package Tests.Agents;
 
 import Objects.Agents.InPersonAgent;
-import Objects.Agents.Supervisor;
+import Objects.Supervisor.Supervisor;
 import Objects.Agents.TerminalAgent;
-import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Created by kavan on 11/17/15.

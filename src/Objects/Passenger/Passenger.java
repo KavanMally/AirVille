@@ -16,6 +16,8 @@ public class Passenger implements Comparable<Passenger> {
 
     private Random random;
 
+    private int MODIFIER;
+
     public Passenger(){
 
         random = new Random();
@@ -23,6 +25,8 @@ public class Passenger implements Comparable<Passenger> {
         randomSlowProcess();
         randomRequireManager();
         randomNeedTechSupport();
+
+        MODIFIER = 2;
     }
 
 
@@ -55,6 +59,8 @@ public class Passenger implements Comparable<Passenger> {
     public boolean getSlowProcess(){ return slowProcess; }
     public boolean getRequireManager(){ return requireManager; }
     public boolean getNeedTechSupport(){ return needTechSupport; }
+
+    public int getMODIFIER(){ return MODIFIER; }
 
 
     @Override

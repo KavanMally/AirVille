@@ -1,7 +1,7 @@
 package Objects.Lines;
 
 import Objects.Agents.Agent;
-import Objects.Agents.Supervisor;
+import Objects.Supervisor.Supervisor;
 import Objects.Passenger.Passenger;
 
 import java.util.Queue;
@@ -29,11 +29,13 @@ public class Line {
     public void acceptSupervisor(Supervisor supervisor) {
         this.supervisor = supervisor;
         hasSupervisor = true;
+        agent.pairUpWithSupervisor(supervisor);
     }
 
     public void removeSupervisor(){
         supervisor = null;
         hasSupervisor = false;
+        agent.separateFromSupervisor();
     }
 
 

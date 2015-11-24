@@ -3,7 +3,7 @@ public Agent():
 
     - GOAL: Facilitate ticket processing at designated workstation
 
-    private float RateOfProcess;
+    private float timeToProcess;
         - rate at which agent can process customer at check in line
     private boolean pairedWithSupervisor;
         - indicates whether supervisor is overseeing agent's booth
@@ -12,6 +12,9 @@ public Agent():
                 - sleeps for (timeToProcess * 1000) milliseconds
                 - emulates the ticket processing without the actual processing
 
+    public void waitForHelp();
+        - if a supervisor is not paired with agent at booth, wait until manager is transferred
+
 
     public long modifyTimeToProcess(Passenger passenger);
         - checks if passenger is a slow process
@@ -19,8 +22,7 @@ public Agent():
 
 
     public void checkPassenger(Passenger passenger);
-        - Go through passenger's conditions and modify actions based on them
-        - Only checks booleans that require different functions, not modify current ones
+        - Checks if passenger requires a manager, is so call on waitForHelp
 
 
     public void pairUpWithSupervisor(Supervisor supervisor);
@@ -32,10 +34,14 @@ public Agent():
         - useful when moving supervisor to different line or sidelining him
 
 
+
+
+
+
     public InPersonAgent(): - subclass of Agent
         - GOAL: Personally process tickets at Objects.Lines.PersonLine
 
-        private float RateOfProcess;
+        private float timeToProcess;
             - rate at which agent can process customer at check in line
 
         public InPersonAgent();
@@ -72,6 +78,34 @@ public Agent():
 
         public void provideAssistance();
             - provides assistance to passenger at line's terminal
+
+
+
+
+    public Terminal():
+        - GOAL: facilitate ticket processing done by terminal
+
+        private Agent assignedAgent; - Agent assigned to troubleshoot this terminal
+        private float timeToProcess; - rate at which normal use of terminal will process ticket
+
+        public Terminal(Agent agent);
+            - constructor for Terminal
+            - initializes object and assign Objects.Agents.Agent to monitor this terminal
+
+        public boolean processTicket(Passenger passenger);
+            - processes passenger's ticket
+                    * if successful passenger leaves terminal and exits booth
+                    * else redirected to personLine
+
+        private void redirectPassenger(Passenger passenger);
+            - redirects passenger to person line
+            - since we're assuming passenger only redirected at front of terminal
+
+        private void requestAssistance();
+            - allows passenger to request aid from supervising agent
+            - needed if ticket cannot be processed either through technical errors or inability
+            - might redirect passenger if problem persists
+
 
 
 public Supervisor() - separate entity from Agent, has more authority/functionality
@@ -160,29 +194,6 @@ public Line():
         public void addAvailableTerminal(Terminal terminal);
             - returns terminal to availableQueue when it finishes processing passenger
 
-public Terminal():
-    - GOAL: facilitate ticket processing done by terminal
-
-    private Agent assignedAgent; - Agent assigned to troubleshoot this terminal
-    private float RateOfProcess; - rate at which normal use of terminal will process ticket
-
-    public Terminal(Agent agent);
-        - constructor for Terminal
-        - initializes object and assign Objects.Agents.Agent to monitor this terminal
-
-    public boolean useTerminal(Passenger passenger);
-        - processes passenger's ticket
-                * if successful passenger leaves terminal and exits booth
-                * else redirected to personLine
-
-    private void redirectPassenger(Passenger passenger);
-        - redirects passenger to person line
-        - since we're assuming passenger only redirected at front of terminal
-
-    private void requestAssistance();
-        - allows passenger to request aid from supervising agent
-        - needed if ticket cannot be processed either through technical errors or inability
-        - might redirect passenger if problem persists
 
 public Passenger():
     - GOAL: easily creatable objects that enter random queue to processed
