@@ -9,14 +9,14 @@ import java.util.Random;
  */
 public class Passenger implements Comparable<Passenger> {
 
-    private boolean isFrequentFlier;
-    private boolean slowProcess;
-    private boolean requireManager;
-    private boolean needTechSupport;
+    private boolean isFrequentFlier; //indicates whether passenger has priority in PersonLine
+    private boolean slowProcess; //indicates whether passenger requires more time processing
+    private boolean requireManager; //indicates whether passenger requires supervisor to be processed
+    private boolean needTechSupport; //indicates whether passenger requires TerminalAgent in TerminalLine
 
-    private Random random;
+    private Random random; //random number generator used to generate booleans
 
-    private int MODIFIER;
+    private int MODIFIER; //modifies timeOfProcess
 
     public Passenger(){
 
@@ -29,9 +29,12 @@ public class Passenger implements Comparable<Passenger> {
         MODIFIER = 2;
     }
 
-
+    /**
+     * How passenger enters line
+     * @param line
+     */
     public void enterLine(Line line){
-
+        line.addPassenger(this);
     }
 
 
@@ -53,7 +56,6 @@ public class Passenger implements Comparable<Passenger> {
 
 
 
-    //todo: comment the hell out of project (AND DELETE THESE TODOS!!!!!)
 
     public boolean getFrequentFlier(){ return isFrequentFlier; }
     public boolean getSlowProcess(){ return slowProcess; }
@@ -63,6 +65,11 @@ public class Passenger implements Comparable<Passenger> {
     public int getMODIFIER(){ return MODIFIER; }
 
 
+    /**
+     * If passenger isFrequentFlier, has priority in queue, else normal FIFO
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Passenger o) {
         if(o.getFrequentFlier())

@@ -1,6 +1,7 @@
 package Objects.Lines;
 
 import Objects.Agents.Agent;
+import Objects.Agents.InPersonAgent;
 import Objects.Passenger.Passenger;
 
 import java.util.Comparator;
@@ -11,21 +12,21 @@ import java.util.PriorityQueue;
  */
 public class PersonLine extends Line {
 
-    //private Comparator passengerComparator;
+    InPersonAgent agent;
 
-    public PersonLine(Agent agent){
+
+    public PersonLine(InPersonAgent agent){
         super(agent);
-
-        //PriorityQueue<Passenger> line = new PriorityQueue<Passenger>();
-        //passengerComparator = line.comparator();
-
+        this.agent = agent;
         line = new PriorityQueue<>();
     }
 
-    //TODO: DO AGENTS HANDLE PROCESSING OR DO LINE????????????????
+    /**
+     * Move passenger from front of the line to processing booth
+     */
     private void processPassenger(){
-        Passenger passenger = line.poll();
-        agent.actionSequence();
+        Passenger passenger = getPassenger();
+        agent.processTicket(passenger);
     }
 
 }

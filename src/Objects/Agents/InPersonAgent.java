@@ -27,7 +27,10 @@ public class InPersonAgent extends Agent {
      * @param passenger to process
      */
     public void processTicket(Passenger passenger){
+
+        setBusy(true);
         actionSequence(passenger, getTimeToProcess());
+        setBusy(false);
     }
 
 }

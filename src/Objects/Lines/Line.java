@@ -12,7 +12,6 @@ import java.util.Queue;
 public class Line {
 
     Queue<Passenger> line;
-    private boolean inUse; //possibly deprecated
     Agent agent;
     private boolean hasSupervisor;
 
@@ -26,12 +25,21 @@ public class Line {
 
     public Agent getAgent(){ return agent; }
 
+
+    /**
+     * Handles supervisor aiding line in processing passenger
+     * @param supervisor
+     */
     public void acceptSupervisor(Supervisor supervisor) {
         this.supervisor = supervisor;
         hasSupervisor = true;
         agent.pairUpWithSupervisor(supervisor);
     }
 
+    /**
+     * Removes supervisor from line
+     * Needed when supervisor moves to different line
+     */
     public void removeSupervisor(){
         supervisor = null;
         hasSupervisor = false;

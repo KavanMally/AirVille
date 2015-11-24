@@ -8,6 +8,9 @@ public Agent():
     private boolean pairedWithSupervisor;
         - indicates whether supervisor is overseeing agent's booth
 
+    private boolean busy;
+        - indicates whether agent is busy processing passenger
+
     public void actionSequence(Passenger passenger, long timeToProcess);
                 - sleeps for (timeToProcess * 1000) milliseconds
                 - emulates the ticket processing without the actual processing
@@ -142,23 +145,21 @@ public Line():
     private Queue line;
         - data structure that handles query of passengers
         - with Queue's pop() method, we don't have to implement remove method since it does that automatically
-    private boolean inUse; - indicates whether line is processing a passenger
-
+    Agent agent;
+        - represents agent assigned to line
+    Supervisor supervisor;
+        - represents the supervisor that may or may not assist line
 
     public void addPassenger(Passenger passenger);
         - adds passenger to the end of queue of this object
 
 
-    public void processPassenger();
-        - begins processing pop() passenger for flight
-        - exact implementation varies by subclass line
-
-
     public acceptSupervisor(Supervisor supervisor);
-        -
+        - handles supervisor aiding line in processing passenger
 
     public void removeSupervisor();
-        -
+        - removes supervisor from line
+        - needed when he moves to different line
 
 
     public PersonLine() - subclass of Line, handles booth operated solely by people
@@ -179,23 +180,15 @@ public Line():
     public AutomatedLine() - subclass of Line, handles processing mainly by a terminal
     - GOAL: handle queue for people entering ticket processing booth done by terminal
 
-
         private Terminal terminal; - terminal allocated to this line
 
         public AutomatedLine(Agent agent);
             - constructor of AutomatedLine
             - initially starts off with all its terminals available
 
-
         public void processPassenger();
             - allocates a terminal to the pop() passenger
             - terminal begins processing passenger's ticket
-
-        private Terminal removeAvailableTerminal();
-            - removes first terminal from queue when it is allocated to passenger
-
-        public void addAvailableTerminal(Terminal terminal);
-            - returns terminal to availableQueue when it finishes processing passenger
 
 
 public Passenger():

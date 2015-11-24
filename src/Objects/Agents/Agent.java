@@ -19,6 +19,8 @@ public class Agent {
 
     private Supervisor pairedSupervisor = null;
 
+    private boolean busy; //indicates whether agent is handling passenger
+
 
     public Agent(){
         timeToProcess = DEFAULT_VALUE;
@@ -129,6 +131,13 @@ public class Agent {
         return timeToProcess;
     }
 
+    /**
+     * Getter method
+     * @return busy
+     */
+    public boolean getBusy(){ return busy;}
+
+    public void setBusy(boolean busy){ this.busy = busy; }
 
 
 }

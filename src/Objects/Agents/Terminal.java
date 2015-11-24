@@ -33,10 +33,14 @@ public class Terminal extends Agent {
      */
     public void processTicket(Passenger passenger){
 
+        setBusy(true);
+
         if(passenger.getNeedTechSupport())
             requestAssistance(passenger);
         else
             super.actionSequence(passenger, getTimeToProcess());
+
+        setBusy(false);
     }
 
 
