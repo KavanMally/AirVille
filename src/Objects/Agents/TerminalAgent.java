@@ -6,6 +6,7 @@ import java.util.Queue;
 
 /**
  * Created by kavan on 11/15/15.
+ * @goal Provide assistance to passengers in Automated Line
  */
 public class TerminalAgent extends Agent {
 
@@ -18,12 +19,11 @@ public class TerminalAgent extends Agent {
         super(timeOfProcess);
     }
 
+    /**
+     * Provide troubleshooting to passengers having trouble with terminal
+     * @param passenger
+     */
     public void provideAssistance(Passenger passenger){
-
-
-        //finished task
         this.actionSequence(passenger, getTimeToProcess());
-
-
     }
 }

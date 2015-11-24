@@ -39,7 +39,7 @@ public Agent():
 
 
     public InPersonAgent(): - subclass of Agent
-        - GOAL: Personally process tickets at Objects.Lines.PersonLine
+        - GOAL: Personally process tickets at PersonLine
 
         private float timeToProcess;
             - rate at which agent can process customer at check in line
@@ -51,6 +51,9 @@ public Agent():
         public InPersonAgent(float rate);
             - constructor of InPersonAgent
             - initializes RateOfProcess to rate value
+        public void processTicket(Passenger passenger);
+            - calls on agent's actionSequence method
+            - mostly a stub to provide interface for actual processing of tickets
 
 
 

@@ -5,6 +5,7 @@ import Objects.Passenger.Passenger;
 
 /**
  * Created by kavan on 11/15/15.
+ * @goal facilitate ticket processing done by terminal
  */
 public class Terminal extends Agent {
 
@@ -25,14 +26,16 @@ public class Terminal extends Agent {
     }
 
 
-
-
-
+    /**
+     * Process passenger's ticket
+     * @param passenger to process
+     */
     public void processTicket(Passenger passenger){
 
         if(passenger.getNeedTechSupport()){
             requestAssistance(passenger);
         }
+        
 
         super.actionSequence(passenger, getTimeToProcess());
     }

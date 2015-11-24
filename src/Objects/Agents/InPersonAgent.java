@@ -6,6 +6,7 @@ import Objects.Passenger.Passenger;
 
 /**
  * Created by kavan on 11/15/15.
+ * @goal personally process tickets at PersonLine
  */
 public class InPersonAgent extends Agent {
 
@@ -20,10 +21,12 @@ public class InPersonAgent extends Agent {
     }
 
 
+    /**
+     * Processes passenger's ticket
+     * Mostly a stub to provide interface for actual processing of tickets
+     * @param passenger to process
+     */
     public void processTicket(Passenger passenger){
-
-
-
         actionSequence(passenger, getTimeToProcess());
     }
 
