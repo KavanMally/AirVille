@@ -71,6 +71,8 @@ public class Agent {
     //assuming that any action in the game can be represented by a pause
     public void actionSequence(Passenger passenger, long timeToProcess){
 
+        checkPassenger(passenger);
+
         long temp = modifyTimeToProcess(passenger);
 
 

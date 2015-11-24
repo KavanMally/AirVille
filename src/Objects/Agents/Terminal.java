@@ -1,5 +1,6 @@
 package Objects.Agents;
 
+import Objects.Lines.Line;
 import Objects.Passenger.Passenger;
 
 /**
@@ -9,15 +10,18 @@ public class Terminal extends Agent {
 
 
     private final static long DEFAULT_VALUE = 1500;
+    private TerminalAgent terminalAgent;
 
 
-
-    public Terminal(){
+    public Terminal(TerminalAgent terminalAgent){
 
         super(DEFAULT_VALUE);
+        this.terminalAgent = terminalAgent;
     }
-    public Terminal(long runTime){
+    public Terminal(TerminalAgent terminalAgent, long runTime){
         super(runTime);
+        this.terminalAgent = terminalAgent;
+
     }
 
 
@@ -30,25 +34,17 @@ public class Terminal extends Agent {
             requestAssistance(passenger);
         }
 
-
-
         super.actionSequence(passenger, getTimeToProcess());
-
-
-
-
-
     }
 
 
-    public void redirectPassenger(Passenger passenger){
-
+    public void redirectPassenger(Passenger passenger, Line line){
+        line.addPassenger(passenger);
     }
 
 
     private void requestAssistance(Passenger passenger) {
-
-
+        terminalAgent.provideAssistance(passenger);
     }
 
 

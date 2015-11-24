@@ -1,13 +1,13 @@
 package Objects.Agents;
 
+import Objects.Passenger.Passenger;
+
 import java.util.Queue;
 
 /**
  * Created by kavan on 11/15/15.
  */
 public class TerminalAgent extends Agent {
-
-    private Queue helpLine;
 
 
     public TerminalAgent(){
@@ -18,12 +18,11 @@ public class TerminalAgent extends Agent {
         super(timeOfProcess);
     }
 
-    //TODO fill in
-    public void provideAssistance(Terminal terminal){
+    public void provideAssistance(Passenger passenger){
 
 
         //finished task
-        this.actionSequence();
+        this.actionSequence(passenger, getTimeToProcess());
 
 
     }

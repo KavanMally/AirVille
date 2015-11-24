@@ -25,7 +25,7 @@ public Agent():
 
     public void pairUpWithSupervisor(Supervisor supervisor);
         - inspired by Fire Emblem Awakening's Pair Up system
-        -
+        - checks off boolean condition that supervisor is there, cutting down time on actionSequence
 
     public void separateFromSupervisor();
         - split supervisor from agent
