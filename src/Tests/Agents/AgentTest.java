@@ -45,7 +45,8 @@ public class AgentTest {
 
         boolean needManager = passenger.getRequireManager();
 
-        //todo: fix
+        //todo: fix, instead of calling thread.sleep, you can refuse all operations until boolean is fixed
+        //inPersonAgent.checkPassenger();
         //assertEquals(needManager, inPersonAgent.checkPassenger(passenger));
 
     }
