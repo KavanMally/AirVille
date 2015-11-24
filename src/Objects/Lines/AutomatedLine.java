@@ -1,6 +1,7 @@
 package Objects.Lines;
 
 import Objects.Agents.Agent;
+import Objects.Agents.TerminalAgent;
 import Objects.Passenger.Passenger;
 import Objects.Agents.Terminal;
 
@@ -16,10 +17,10 @@ public class AutomatedLine extends Line {
     private Terminal terminal;
 
 
-    public AutomatedLine(Agent agent){
+    public AutomatedLine(TerminalAgent agent){
         super(agent);
         line = new LinkedList<>();
-
+        terminal = new Terminal(agent);
 
     }
 

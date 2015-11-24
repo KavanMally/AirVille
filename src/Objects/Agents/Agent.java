@@ -44,11 +44,18 @@ public class Agent {
         long temp = modifyTimeToProcess(passenger);
 
 
+        //System.out.println("Processing passenger");
+
+        //System.out.println("[" + LineType + "] processing passenger");
+        //System.out.println("[" + Agent + "providing tech support");
+
+        /*
         try {
             Thread.sleep(temp);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
 
     }
 

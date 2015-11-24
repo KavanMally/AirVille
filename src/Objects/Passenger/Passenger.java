@@ -29,6 +29,19 @@ public class Passenger implements Comparable<Passenger> {
         MODIFIER = 2;
     }
 
+    //more for testing purposes
+    public Passenger(boolean isFrequentFlier){
+
+        random = new Random();
+        this.isFrequentFlier = isFrequentFlier;
+        randomSlowProcess();
+        randomRequireManager();
+        randomNeedTechSupport();
+
+        MODIFIER = 2;
+
+    }
+
     /**
      * How passenger enters line
      * @param line

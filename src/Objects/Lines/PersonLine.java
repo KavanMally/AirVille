@@ -24,7 +24,7 @@ public class PersonLine extends Line {
     /**
      * Move passenger from front of the line to processing booth
      */
-    private void processPassenger(){
+    public void processPassenger(){
         Passenger passenger = getPassenger();
         agent.processTicket(passenger);
     }
