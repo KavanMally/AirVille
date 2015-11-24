@@ -48,6 +48,7 @@ public class Terminal extends Agent {
 
     private void requestAssistance(Passenger passenger) {
 
+
     }
 
 

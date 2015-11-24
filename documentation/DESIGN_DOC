@@ -20,8 +20,20 @@ public Agent():
             - constructor of InPersonAgent
             - initializes RateOfProcess to rate value
 
-        public void processTicket(Passenger passenger);
-            - Process passenger
+        public void checkPassenger(Passenger passenger);
+            - Go through passenger's conditions and modify actions based on them
+            - Only checks booleans that require different functions, not modify current ones
+
+
+
+        public void actionSequence(Passenger passenger, long timeToProcess);
+            - sleeps for (timeToProcess * 1000) milliseconds
+            - emulates the ticket processing without the actual processing
+
+
+        public long modifyTimeToProcess(Passenger passenger);
+            - checks if passenger is a slow process
+            - if slow, increases time needed to complete an actionSequence for passenger
 
     public TerminalAgent(): - subclass of Agent
         - GOAL: Provide assistance to passengers in AutomatedLine
@@ -29,8 +41,6 @@ public Agent():
         private float RateOfProcess;
             - rate at which agent can process customer at check in line
 
-        private Queue helpLine;
-            - assist passengers who need help with terminal on FIFO
 
 
         public TerminalAgent();
@@ -43,8 +53,8 @@ public Agent():
 
 
 
-        public void provideAssistance(Terminal terminal);
-            - provides assistance to passenger at Terminal terminal
+        public void provideAssistance();
+            - provides assistance to passenger at line's terminal
 
 
 public Supervisor() - separate entity from Agent, has more authority/functionality
@@ -100,21 +110,11 @@ public Line():
             - processes passenger with frequent flier, if none then process queue as normal
 
 
-    public AutomatedLine() - subclass of Line, handles processing mainly by terminals
+    public AutomatedLine() - subclass of Line, handles processing mainly by a terminal
     - GOAL: handle queue for people entering ticket processing booth done by terminal
 
 
-        private static final int TERMINALS_PER_AGENT;
-            - preset number of terminals single agent can float around
-
-        private int numberOfTerminals;
-            - number of terminals in booth
-
-        private Queue availableTerminal;
-            - Collection of terminals available
-            - Design provides no indication of distinguishable terminals
-                besides availability, therefore individual tracking of terminals pointless
-            - first terminal in queue passed to next available passenger
+        private Terminal terminal; - terminal allocated to this line
 
         public AutomatedLine(Agent agent);
             - constructor of AutomatedLine

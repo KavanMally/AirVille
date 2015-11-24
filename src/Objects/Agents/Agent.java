@@ -9,11 +9,15 @@ import Objects.Passenger.Passenger;
 public class Agent {
 
 
-    final long DEFAULT_VALUE = 10000; //1 second
+    private final long DEFAULT_VALUE = 10000; //1 second
 
     private long timeToProcess; //represented in milliseconds
 
     private static final int MODIFIER = 2;
+
+    private boolean pairedWithSupervisor;
+
+    private final long checkFrequency = 1;
 
 
     public Agent(){
@@ -29,6 +33,14 @@ public class Agent {
         return timeToProcess;
     }
 
+
+
+    public void checkPassenger(Passenger passenger){
+
+        if(passenger.getRequireManager()){
+            waitForHelp();
+        }
+    }
 
 
     //assuming that any action in the game can be represented by a pause
@@ -50,14 +62,21 @@ public class Agent {
     public long modifyTimeToProcess(Passenger passenger){
 
         if(passenger.getSlowProcess())
-            return timeToProcess / MODIFIER;
+            return timeToProcess * MODIFIER;
         else return timeToProcess;
 
     }
 
 
-    public void waitForHelp(Line line){
+    public void waitForHelp(){
 
+        while(!pairedWithSupervisor){
+            try {
+                Thread.sleep(checkFrequency);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }

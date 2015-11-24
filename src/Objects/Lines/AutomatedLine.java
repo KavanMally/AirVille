@@ -15,40 +15,42 @@ public class AutomatedLine extends Line {
 
 
     private static final int TERMINALS_PER_AGENT = 50; //default, can be changed
-    private int numberOfTerminals;
+    //private int numberOfTerminals;
 
-    private Queue<Terminal> availableTerminal;
+
+    private Terminal terminal;
+
+    //private Queue<Terminal> availableTerminal;
 
 
     public AutomatedLine(Agent agent){
         super(agent);
         line = new LinkedList<>();
-        numberOfTerminals = TERMINALS_PER_AGENT;
-        availableTerminal = new LinkedList<>();
-        availableTerminal.addAll(createMultipleTerminals());
+        //numberOfTerminals = TERMINALS_PER_AGENT;
+        //availableTerminal = new LinkedList<>();
+        //availableTerminal.addAll(createMultipleTerminals());
 
     }
 
     public void processPassenger(){
 
         Passenger passenger = getPassenger();
-        Terminal terminal = removeAvailableTerminal();
+        //Terminal terminal = removeAvailableTerminal();
 
         terminal.processTicket(passenger);
-        //todo: add terminal back to list
 
     }
 
 
-    private Terminal removeAvailableTerminal(){
-        return availableTerminal.poll();
-    }
+   // private Terminal removeAvailableTerminal(){
+    //    return availableTerminal.poll();
+   // }
 
-    public void addAvailableTerminal(Terminal terminal){
-        availableTerminal.add(terminal);
-    }
+    //public void addAvailableTerminal(Terminal terminal){
+      //  availableTerminal.add(terminal);
+    //}
 
-
+/*
     private ArrayList<Terminal> createMultipleTerminals(){
 
         ArrayList<Terminal> list = new ArrayList<>();
@@ -59,5 +61,5 @@ public class AutomatedLine extends Line {
 
         return list;
     }
-
+*/
 }

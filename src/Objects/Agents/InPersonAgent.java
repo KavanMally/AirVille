@@ -24,7 +24,7 @@ public class InPersonAgent extends Agent {
 
 
 
-        actionSequence(passenger);
+        actionSequence(passenger, getTimeToProcess());
     }
 
 }
