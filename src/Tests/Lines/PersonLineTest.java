@@ -1,7 +1,7 @@
 package Tests.Lines;
 
 import Objects.Agents.InPersonAgent;
-import Objects.Lines.PersonLine;
+import Objects.Lines.InPersonLine;
 import Objects.Passenger.Passenger;
 import Objects.Supervisor.Supervisor;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ import org.junit.Test;
 public class PersonLineTest {
 
 
-    PersonLine personLine;
+    InPersonLine inPersonLine;
     Passenger passenger;
 
     Supervisor supervisor;
@@ -22,7 +22,7 @@ public class PersonLineTest {
     @Before
     public void init(){
 
-        personLine = new PersonLine(new InPersonAgent());
+        inPersonLine = new InPersonLine(new InPersonAgent());
         passenger = new Passenger();
         supervisor = new Supervisor();
 
@@ -33,9 +33,9 @@ public class PersonLineTest {
 
 
 
-        personLine.addPassenger(passenger);
+        inPersonLine.addPassenger(passenger);
 
-        assertEquals(passenger, personLine.getPassenger());
+        assertEquals(passenger, inPersonLine.getPassenger());
     }
 
     @Test
@@ -46,9 +46,9 @@ public class PersonLineTest {
 
     @Test
     public void testAcceptSupervisor(){
-        personLine.acceptSupervisor(supervisor);
+        inPersonLine.acceptSupervisor(supervisor);
 
-        assertTrue(personLine.getHasSupervisor());
+        assertTrue(inPersonLine.getHasSupervisor());
     }
 
 

@@ -13,14 +13,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by kavan on 11/15/15.
  */
-public class AutomatedLine extends Line {
+public class TerminalLine extends Line {
 
     private Terminal terminal;
 
 
-    public AutomatedLine(TerminalAgent agent){
+    public TerminalLine(TerminalAgent agent){
         super(agent);
-        line = new LinkedBlockingQueue<>();
+        line = new LinkedList<>();
         terminal = new Terminal(agent);
 
     }

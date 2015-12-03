@@ -3,8 +3,8 @@ package Tests.Simulation;
 import Objects.Agents.InPersonAgent;
 import Objects.Agents.Terminal;
 import Objects.Agents.TerminalAgent;
-import Objects.Lines.AutomatedLine;
-import Objects.Lines.PersonLine;
+import Objects.Lines.TerminalLine;
+import Objects.Lines.InPersonLine;
 import Objects.Passenger.Passenger;
 import Objects.Supervisor.Supervisor;
 import org.junit.Before;
@@ -17,8 +17,8 @@ public class TestSinerio {
 
 
 
-    private AutomatedLine automatedLine;
-    private PersonLine personLine;
+    private TerminalLine terminalLine;
+    private InPersonLine inPersonLine;
 
     private Supervisor supervisor;
 
@@ -32,8 +32,8 @@ public class TestSinerio {
     public void init(){
 
 
-        automatedLine = new AutomatedLine(terminalAgent);
-        personLine = new PersonLine(inPersonAgent);
+        terminalLine = new TerminalLine(terminalAgent);
+        inPersonLine = new InPersonLine(inPersonAgent);
 
     }
 
@@ -41,13 +41,13 @@ public class TestSinerio {
     public void quickRun(){
 
         for(int x = 0; x < 10; x++){
-            automatedLine.addPassenger(new Passenger());
-            personLine.addPassenger(new Passenger());
+            terminalLine.addPassenger(new Passenger());
+            inPersonLine.addPassenger(new Passenger());
         }
 
         for(int x = 0; x < 10; x++){
-            automatedLine.processPassenger();
-            personLine.processPassenger();
+            terminalLine.processPassenger();
+            inPersonLine.processPassenger();
         }
     }
 

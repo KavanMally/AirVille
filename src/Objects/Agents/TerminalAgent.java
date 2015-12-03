@@ -23,6 +23,7 @@ public class TerminalAgent extends Agent {
      * Provide troubleshooting to passengers having trouble with terminal
      * @param passenger
      */
+    //todo: change from void to long to return time spend doing stuff, easier to junit this
     public void provideAssistance(Passenger passenger){
         //this.actionSequence(passenger, getTimeToProcess());
         setActionLabel("Terminal agent providing technical assistance to passenger: ");

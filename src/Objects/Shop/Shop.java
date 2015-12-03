@@ -8,7 +8,7 @@ public class Shop {
 
     private static Shop shop = null;
 
-    protected Shop(){}
+    private Shop(){}
 
     public static Shop getShop(){
         if(shop == null)

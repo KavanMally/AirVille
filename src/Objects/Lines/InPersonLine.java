@@ -10,12 +10,12 @@ import java.util.PriorityQueue;
 /**
  * Created by kavan on 11/15/15.
  */
-public class PersonLine extends Line {
+public class InPersonLine extends Line {
 
     InPersonAgent agent;
 
 
-    public PersonLine(InPersonAgent agent){
+    public InPersonLine(InPersonAgent agent){
         super(agent);
         this.agent = agent;
         line = new PriorityQueue<>();
@@ -24,6 +24,8 @@ public class PersonLine extends Line {
     /**
      * Move passenger from front of the line to processing booth
      */
+
+    //TODO: abstract by assigning agent to terminal
     public void processPassenger(){
         Passenger passenger = getPassenger();
         agent.processTicket(passenger);

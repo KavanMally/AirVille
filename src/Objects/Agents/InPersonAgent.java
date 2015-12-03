@@ -6,7 +6,7 @@ import Objects.Passenger.Passenger;
 
 /**
  * Created by kavan on 11/15/15.
- * @goal personally process tickets at PersonLine
+ * @goal personally process tickets at InPersonLine
  */
 public class InPersonAgent extends Agent {
 
@@ -27,7 +27,7 @@ public class InPersonAgent extends Agent {
      * @param passenger to process
      */
     public void processTicket(Passenger passenger){
-
+        //todo: remove setBusy, real-time team's problem
         setBusy(true);
         //actionSequence(passenger, getTimeToProcess());
         setActionLabel("InPersonAgent processing passenger's ticket: ");

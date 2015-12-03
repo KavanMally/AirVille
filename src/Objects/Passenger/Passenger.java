@@ -9,14 +9,17 @@ import java.util.Random;
  */
 public class Passenger implements Comparable<Passenger> {
 
-    private boolean isFrequentFlier; //indicates whether passenger has priority in PersonLine
+    private boolean isFrequentFlier; //indicates whether passenger has priority in InPersonLine
     private boolean slowProcess; //indicates whether passenger requires more time processing
     private boolean requireManager; //indicates whether passenger requires supervisor to be processed
     private boolean needTechSupport; //indicates whether passenger requires TerminalAgent in TerminalLine
 
     private Random random; //random number generator used to generate booleans
 
-    private int MODIFIER; //modifies timeOfProcess
+    private final static int MODIFIER = 2; //modifies timeOfProcess
+
+    //todo: enum
+    //todo: container class
 
     public Passenger(){
 
@@ -25,8 +28,6 @@ public class Passenger implements Comparable<Passenger> {
         randomSlowProcess();
         randomRequireManager();
         randomNeedTechSupport();
-
-        MODIFIER = 2;
     }
 
     //more for testing purposes
@@ -38,9 +39,19 @@ public class Passenger implements Comparable<Passenger> {
         randomRequireManager();
         randomNeedTechSupport();
 
-        MODIFIER = 2;
-
     }
+
+    public Passenger(boolean isFrequentFlier, boolean slowProcess, boolean requireManager, boolean needTechSupport){
+        this.isFrequentFlier = isFrequentFlier;
+        this.slowProcess = slowProcess;
+        this.requireManager = requireManager;
+        this.needTechSupport = needTechSupport;
+    }
+
+
+
+
+
 
     /**
      * How passenger enters line
@@ -49,6 +60,16 @@ public class Passenger implements Comparable<Passenger> {
     public void enterLine(Line line){
         line.addPassenger(this);
     }
+
+    /**
+     * Checks boolean conditions, randomizes uninitialized booleans
+     */
+    private void randomizeNulls(){
+
+
+
+    }
+
 
 
     private void randomIsFrequentFlier(){
@@ -83,10 +104,15 @@ public class Passenger implements Comparable<Passenger> {
      * @param o
      * @return
      */
+    //todo: check up on complexity
     @Override
     public int compareTo(Passenger o) {
-        if(o.getFrequentFlier())
+
+        if(this.getFrequentFlier() && !o.getFrequentFlier() )
             return 1;
-        else return -1;
+        else if(!this.getFrequentFlier() && o.getFrequentFlier())
+            return -1;
+        else return 0;
+
     }
 }

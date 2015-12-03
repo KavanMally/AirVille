@@ -1,7 +1,7 @@
 package Tests.misc;
 
 import Objects.Agents.TerminalAgent;
-import Objects.Lines.AutomatedLine;
+import Objects.Lines.TerminalLine;
 import Objects.Passenger.Passenger;
 
 /**
@@ -14,11 +14,11 @@ public class temp {
     public static void main(String[] args) {
 
 
-        AutomatedLine automatedLine = new AutomatedLine(new TerminalAgent());
+        TerminalLine terminalLine = new TerminalLine(new TerminalAgent());
 
-        automatedLine.addPassenger(new Passenger());
+        terminalLine.addPassenger(new Passenger());
 
-        automatedLine.processPassenger();
+        terminalLine.processPassenger();
 
         System.out.println("finished processing");
     }
