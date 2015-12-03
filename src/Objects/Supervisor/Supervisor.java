@@ -9,7 +9,6 @@ public class Supervisor  {
 
 
 
-    private int MAX_NUMBER_OF_SUPERVISORS = 1;
     private boolean inLine;
     private final int MODIFIER;
 
