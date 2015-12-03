@@ -1,5 +1,6 @@
 package Objects.Agents;
 
+import Exceptions.AgentException;
 import Objects.Agents.Agent;
 import Objects.Passenger.Passenger;
 
@@ -26,12 +27,11 @@ public class InPersonAgent extends Agent {
      * Mostly a stub to provide interface for actual processing of tickets
      * @param passenger to process
      */
-    public void processTicket(Passenger passenger){
-        //todo: remove setBusy, real-time team's problem
+    public void processTicket(Passenger passenger) throws AgentException {
         setBusy(true);
-        //actionSequence(passenger, getTimeToProcess());
+        long time = actionSequence(passenger);
         setActionLabel("InPersonAgent processing passenger's ticket: ");
-        System.out.println( getActionLabel() + modifyTimeToProcess(passenger) + " ms");
+        System.out.println( getActionLabel() + time + " ms");
         setBusy(false);
     }
 

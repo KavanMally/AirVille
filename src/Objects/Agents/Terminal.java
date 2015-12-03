@@ -1,5 +1,6 @@
 package Objects.Agents;
 
+import Exceptions.AgentException;
 import Objects.Lines.Line;
 import Objects.Passenger.Passenger;
 
@@ -31,7 +32,7 @@ public class Terminal extends Agent {
      * else run agent's actionSequence
      * @param passenger to process
      */
-    public void processTicket(Passenger passenger){
+    public void processTicket(Passenger passenger) throws AgentException {
 
         setBusy(true);
 
@@ -39,7 +40,7 @@ public class Terminal extends Agent {
             requestAssistance(passenger);
         else{
             setActionLabel("Terminal processing passenger's ticket: ");
-            System.out.println(getActionLabel() + modifyTimeToProcess(passenger) + " ms");
+            System.out.println(getActionLabel() + actionSequence(passenger) + " ms");
         }
 
         setBusy(false);

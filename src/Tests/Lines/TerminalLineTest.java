@@ -30,7 +30,10 @@ public class TerminalLineTest {
      * Tests addPassenger and getPassenger
      */
     @Test
-    public void testQueue(){
+    public void testQueueNaturalOrdering(){
+
+
+        terminalLine = new TerminalLine(terminalAgent);
 
         terminalLine.addPassenger(new Passenger(true));
         terminalLine.addPassenger(new Passenger(false));
@@ -38,17 +41,22 @@ public class TerminalLineTest {
         Passenger passenger = terminalLine.getPassenger();
 
         assertTrue(passenger.getFrequentFlier());
+
+
+    }
+
+    @Test
+    public void testQueuePriorityOrdering(){
+
         terminalLine = new TerminalLine(terminalAgent);
 
 
-        //todo: break down into 2 unit tests
         terminalLine.addPassenger(new Passenger(false));
         terminalLine.addPassenger(new Passenger(false));
         terminalLine.addPassenger(new Passenger(true));
 
-        passenger = terminalLine.getPassenger();
+        Passenger passenger = terminalLine.getPassenger();
         assertFalse(passenger.getFrequentFlier());
-
     }
 
 }

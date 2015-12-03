@@ -11,11 +11,9 @@ import java.util.Queue;
  */
 public class Line {
 
-    Queue<Passenger> line;
-    Agent agent;
-    private boolean hasSupervisor;
+    protected Queue<Passenger> line;
+    private Agent agent;
 
-    Supervisor supervisor;
 
     public Line(Agent agent){ this.agent = agent; }
 
@@ -26,26 +24,6 @@ public class Line {
     public Agent getAgent(){ return agent; }
 
 
-    /**
-     * Handles supervisor aiding line in processing passenger
-     * @param supervisor
-     */
-    public void acceptSupervisor(Supervisor supervisor) {
-        this.supervisor = supervisor;
-        hasSupervisor = true;
-        agent.pairUpWithSupervisor(supervisor);
-    }
 
-    /**
-     * Removes supervisor from line
-     * Needed when supervisor moves to different line
-     */
-    public void removeSupervisor(){
-        supervisor = null;
-        hasSupervisor = false;
-        agent.separateFromSupervisor();
-    }
-
-    public boolean getHasSupervisor(){ return hasSupervisor; }
 
 }

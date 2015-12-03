@@ -1,5 +1,6 @@
 package Tests.Agents;
 
+import Exceptions.AgentException;
 import Objects.Agents.InPersonAgent;
 import Objects.Agents.Terminal;
 import Objects.Passenger.Passenger;
@@ -22,7 +23,7 @@ public class AgentTest {
     Supervisor supervisor;
 
     Passenger passenger;
-
+    Passenger passenger1;
 
 
     @Before
@@ -35,25 +36,18 @@ public class AgentTest {
 
         supervisor = new Supervisor();
 
-        passenger = new Passenger();
+        passenger = new Passenger(true, true, true, true, true);
+
+        passenger1 = new Passenger(false, false, false, false, true);
+
 
     }
 
 
-    @Test
-    public void testCheckPassenger(){
-
-        boolean needManager = passenger.getRequireManager();
-
-        //todo: fix, instead of calling thread.sleep, you can refuse all operations until boolean is fixed
-        //inPersonAgent.checkPassenger();
-        //assertEquals(needManager, inPersonAgent.checkPassenger(passenger));
-
-    }
 
 
     @Test
-    public void testPairWithSupervisor(){
+    public void testPairWithSupervisor() throws AgentException {
 
         inPersonAgent.pairUpWithSupervisor(supervisor);
         assertTrue(inPersonAgent.getPairedWithSupervisor());
@@ -63,7 +57,7 @@ public class AgentTest {
     }
 
     @Test
-    public void testSeparateFromSupervisor(){
+    public void testSeparateFromSupervisor() throws AgentException {
 
         inPersonAgent.pairUpWithSupervisor(supervisor);
         inPersonAgent.separateFromSupervisor();
@@ -75,18 +69,18 @@ public class AgentTest {
     }
 
     @Test
-    public void testModifyTimeToProcess(){
+    public void testModifyTimeToProcess() throws AgentException {
 
         long comp1 = inPersonAgent.modifyTimeToProcess(passenger);
-        long comp2 = inPersonAgent.getTimeToProcess();
-        int temp;
-        if(passenger.getSlowProcess()) temp = 2;
-        else temp = 1;
+        assertEquals(inPersonAgent.actionSequence(passenger), comp1);
 
-        assertEquals(comp1, comp2 * temp);
+    }
 
+    @Test
+    public void testModifyTimeToProcess1() throws AgentException {
 
-
+        long comp1 = inPersonAgent.modifyTimeToProcess(passenger1);
+        assertEquals(inPersonAgent.actionSequence(passenger1), comp1);
     }
 
 }

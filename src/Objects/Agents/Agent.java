@@ -1,5 +1,6 @@
 package Objects.Agents;
 
+import Exceptions.AgentException;
 import Objects.Passenger.Passenger;
 import Objects.Supervisor.Supervisor;
 
@@ -14,8 +15,6 @@ public class Agent {
 
     private long timeToProcess; //represented in milliseconds
     private boolean pairedWithSupervisor; //is supervisor paired with this agent
-
-    private final long checkFrequency = 1; //how often to check if supervisor is not paired
 
     private Supervisor pairedSupervisor = null;
 
@@ -34,56 +33,18 @@ public class Agent {
     //assuming that any action in the game can be represented by a pause
 
     /**
-     * Emulates the time spend on a given action (processing ticket, troubleshooting)
+     * Returns long value of time needed for agent to complete action
+     * Will be simulated by real-time team
      * @param passenger to whom action is directed towards
-     * @param timeToProcess how long it will take (unit milliseconds)
+     * @return long time in milliseconds
      */
-    @Deprecated
-    public void actionSequence(Passenger passenger, long timeToProcess){
-
-        checkPassenger(passenger); //checks if require supervisor
+    public long actionSequence(Passenger passenger) throws AgentException {
 
         long temp = modifyTimeToProcess(passenger);
 
+        if(passenger.getRequireManager()) throw new AgentException(AgentException.ErrorCode.SUPERVISOR_REQUIRED_FOR_OPERATION);
+        return temp;
 
-        //System.out.println("Processing passenger");
-
-        //System.out.println("[" + LineType + "] processing passenger");
-        //System.out.println("[" + Agent + "providing tech support");
-
-        /*
-        try {
-            Thread.sleep(temp);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        */
-
-    }
-
-    /**
-     * Checks whether a supervisor is required to process passenger
-     * @param passenger to whom is being checked
-     */
-    public void checkPassenger(Passenger passenger){
-
-        if(passenger.getRequireManager()){
-            waitForHelp();
-        }
-    }
-
-    /**
-     * Agent sleeps until Supervisor moves to its line, ending sleep cycle
-     */
-    private void waitForHelp(){
-
-        while(!pairedWithSupervisor){
-            try {
-                Thread.sleep(checkFrequency);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 
@@ -92,15 +53,18 @@ public class Agent {
      * supervisors and decrease timeToProcess
      * @param supervisor
      */
-    public void pairUpWithSupervisor(Supervisor supervisor){
+    public void pairUpWithSupervisor(Supervisor supervisor) throws AgentException{
+
+
+        if(supervisor.getBusy()){
+            throw new AgentException(AgentException.ErrorCode.SUPERVISOR_NOT_AVAILABLE);
+        }
 
         pairedSupervisor = supervisor;
-
         pairedWithSupervisor = true;
-
-
-
+        pairedSupervisor.setBusy(true);
         timeToProcess /= supervisor.getMODIFIER();
+
     }
 
     /**
@@ -108,12 +72,14 @@ public class Agent {
      */
     public void separateFromSupervisor(){
 
-        timeToProcess *= pairedSupervisor.getMODIFIER();
+        if(pairedWithSupervisor){
+            timeToProcess *= pairedSupervisor.getMODIFIER();
+            pairedWithSupervisor = false;
+            pairedSupervisor.setBusy(false);
+            pairedSupervisor = null;
+        }
 
-        pairedWithSupervisor = false;
-
-
-        pairedSupervisor = null;
+        //if false then nothing happens as no supervisor is actually paired to this agent
 
     }
 
@@ -132,13 +98,6 @@ public class Agent {
 
     }
 
-    /**
-     * Getter method
-     * @return timeToProcess
-     */
-    public long getTimeToProcess(){
-        return timeToProcess;
-    }
 
     /**
      * Getter method

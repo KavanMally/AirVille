@@ -1,5 +1,6 @@
 package Objects.Supervisor;
 
+import Objects.Agents.Agent;
 import Objects.Lines.Line;
 
 /**
@@ -9,10 +10,10 @@ public class Supervisor  {
 
 
 
-    private boolean inLine;
+    private boolean isBusy;
     private final int MODIFIER;
 
-    private Line line;
+    private Agent pairedTo;
 
 
     public Supervisor(){
@@ -23,33 +24,9 @@ public class Supervisor  {
         MODIFIER = modifier;
     }
 
-    /**
-     * Moves supervisor from current line to new line
-     * Handles case where supervisor has not been set to line yet
-     * Also handles dereferencing from old line
-     * @param line
-     */
-    public void moveSupervisor(Line line){
-        if(null != this.line)
-            line.removeSupervisor();
-        line.acceptSupervisor(this);
-        this.line = line;
-    }
 
-
-    /**
-     * Removes supervisor from any line
-     * Handles case where supervisor is not in any line
-     */
-    public void sideLine(){
-
-        if(null != line)
-            line.removeSupervisor();
-
-        inLine = false;
-    }
-
-    public boolean getInLine(){ return inLine;}
+    public boolean getBusy(){ return isBusy;}
+    public void setBusy(boolean isBusy){ this.isBusy = isBusy; }
 
     public int getMODIFIER(){ return MODIFIER; }
 }

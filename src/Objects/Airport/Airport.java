@@ -2,29 +2,28 @@ package Objects.Airport;
 
 import Exceptions.AirportException;
 import Objects.Agents.Agent;
+import Objects.Agents.InPersonAgent;
+import Objects.Agents.TerminalAgent;
 import Objects.Lines.InPersonLine;
 import Objects.Lines.TerminalLine;
 import Objects.Supervisor.Supervisor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+
 
 /**
  * Created by kavan on 12/1/15.
  */
 public class Airport {
 
-    //todo: remove unused imports
-    //Can you keep track of all the agents, supervisors, counters, etc that the player currently owns.  All the things like that.
 
     private long diamonds;
     private long points;
 
-    private Set<Agent> agentSet;
-    private Set<Supervisor> supervisorSet;
+    private ArrayList<Supervisor> supervisorSet;
 
-    private Set<InPersonLine> inPersonLineSet;
-    private Set<TerminalLine> terminalLineSet;
+    private ArrayList<InPersonLine> inPersonLineSet;
+    private ArrayList<TerminalLine> terminalLineSet;
 
     private int MAX_NUMBER_OF_SUPERVISORS = 1;
 
@@ -39,11 +38,10 @@ public class Airport {
         diamonds = 0;
         points = 0;
 
-        agentSet = new HashSet<>();
-        supervisorSet = new HashSet<>();
+        supervisorSet = new ArrayList<>();
 
-        inPersonLineSet = new HashSet<>();
-        terminalLineSet = new HashSet<>();
+        inPersonLineSet = new ArrayList<>();
+        terminalLineSet = new ArrayList<>();
     }
 
 
@@ -79,23 +77,27 @@ public class Airport {
 
     public void decreaseDiamonds(long increment) throws AirportException {
 
-        //check if operation would drop diamonds to negative zone, if so undo operation
+        //check if operation would drop diamonds to negative zone
         if( (diamonds -= increment) < 0){
             throw new AirportException(AirportException.ErrorCode.INSUFFICIENT_FUNDS);
         }
     }
 
-    public void addAgent(){
-        agentSet.add(new Agent());
+    public long getPoints(){ return points; }
+
+    public long getDiamonds(){ return diamonds; }
+
+
+    public void addInPersonLine(){
+        InPersonAgent inPersonAgent = new InPersonAgent();
+        inPersonLineSet.add(new InPersonLine(inPersonAgent));
     }
 
-    public void addAgent(long timeToProcess){
-        agentSet.add(new Agent(timeToProcess));
+    public void addTerminalLine(){
+        TerminalAgent terminalAgent = new TerminalAgent();
+        terminalLineSet.add(new TerminalLine(terminalAgent));
     }
 
-    public void removeAgent(Agent agent){
-        agentSet.remove(agent);
-    }
 
     public void increaseMaxNumberOfSupervisors(){
         MAX_NUMBER_OF_SUPERVISORS++;

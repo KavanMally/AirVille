@@ -1,0 +1,36 @@
+<project>
+
+    <property name="source.dir" location="src" />
+    <property name="doc.dir" location="documentation" />
+
+
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/AirVille.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="oata.AirVille"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/AirVille.jar" fork="true"/>
+    </target>
+
+    <target name="doc" depends="compile" description="generate documentation">
+        <javadoc sourcepath="${source.dir}" destdir="${doc.dir}"/>
+    </target>
+
+
+
+</project>

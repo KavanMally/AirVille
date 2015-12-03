@@ -13,13 +13,13 @@ public class Passenger implements Comparable<Passenger> {
     private boolean slowProcess; //indicates whether passenger requires more time processing
     private boolean requireManager; //indicates whether passenger requires supervisor to be processed
     private boolean needTechSupport; //indicates whether passenger requires TerminalAgent in TerminalLine
+    private boolean requireHuman;
 
     private Random random; //random number generator used to generate booleans
 
     private final static int MODIFIER = 2; //modifies timeOfProcess
 
-    //todo: enum
-    //todo: container class
+
 
     public Passenger(){
 
@@ -28,6 +28,7 @@ public class Passenger implements Comparable<Passenger> {
         randomSlowProcess();
         randomRequireManager();
         randomNeedTechSupport();
+        randomRequireHuman();
     }
 
     //more for testing purposes
@@ -38,14 +39,16 @@ public class Passenger implements Comparable<Passenger> {
         randomSlowProcess();
         randomRequireManager();
         randomNeedTechSupport();
+        randomRequireHuman();
 
     }
 
-    public Passenger(boolean isFrequentFlier, boolean slowProcess, boolean requireManager, boolean needTechSupport){
+    public Passenger(boolean isFrequentFlier, boolean slowProcess, boolean requireManager, boolean needTechSupport, boolean requireHuman){
         this.isFrequentFlier = isFrequentFlier;
         this.slowProcess = slowProcess;
         this.requireManager = requireManager;
         this.needTechSupport = needTechSupport;
+        this.requireHuman = requireHuman;
     }
 
 
@@ -59,15 +62,6 @@ public class Passenger implements Comparable<Passenger> {
      */
     public void enterLine(Line line){
         line.addPassenger(this);
-    }
-
-    /**
-     * Checks boolean conditions, randomizes uninitialized booleans
-     */
-    private void randomizeNulls(){
-
-
-
     }
 
 
@@ -88,6 +82,10 @@ public class Passenger implements Comparable<Passenger> {
         needTechSupport = random.nextBoolean();
     }
 
+    private void randomRequireHuman(){
+        requireHuman = random.nextBoolean();
+    }
+
 
 
 
@@ -95,6 +93,7 @@ public class Passenger implements Comparable<Passenger> {
     public boolean getSlowProcess(){ return slowProcess; }
     public boolean getRequireManager(){ return requireManager; }
     public boolean getNeedTechSupport(){ return needTechSupport; }
+    public boolean getRequireHuman(){ return requireHuman; }
 
     public int getMODIFIER(){ return MODIFIER; }
 
@@ -104,15 +103,25 @@ public class Passenger implements Comparable<Passenger> {
      * @param o
      * @return
      */
-    //todo: check up on complexity
     @Override
     public int compareTo(Passenger o) {
 
-        if(this.getFrequentFlier() && !o.getFrequentFlier() )
+        if(aGreaterThanBTest(o) )
             return 1;
-        else if(!this.getFrequentFlier() && o.getFrequentFlier())
+        else if(aLessThanBTest(o))
             return -1;
-        else return 0;
-
+        else return 0; //equal case
     }
+
+    private boolean aGreaterThanBTest(Passenger o){
+        return this.getFrequentFlier() && !o.getFrequentFlier();
+    }
+
+    private boolean aLessThanBTest(Passenger o){
+        return !this.getFrequentFlier() && o.getFrequentFlier();
+    }
+
+
+
+
 }

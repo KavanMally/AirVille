@@ -1,5 +1,6 @@
 package Objects.Lines;
 
+import Exceptions.AgentException;
 import Objects.Agents.Agent;
 import Objects.Agents.TerminalAgent;
 import Objects.Passenger.Passenger;
@@ -25,7 +26,7 @@ public class TerminalLine extends Line {
 
     }
 
-    public void processPassenger(){
+    public void processPassenger() throws AgentException {
 
         Passenger passenger = getPassenger();
 

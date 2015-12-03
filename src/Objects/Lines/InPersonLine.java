@@ -1,5 +1,6 @@
 package Objects.Lines;
 
+import Exceptions.AgentException;
 import Objects.Agents.Agent;
 import Objects.Agents.InPersonAgent;
 import Objects.Passenger.Passenger;
@@ -14,6 +15,7 @@ public class InPersonLine extends Line {
 
     InPersonAgent agent;
 
+    Agent test;
 
     public InPersonLine(InPersonAgent agent){
         super(agent);
@@ -25,10 +27,12 @@ public class InPersonLine extends Line {
      * Move passenger from front of the line to processing booth
      */
 
-    //TODO: abstract by assigning agent to terminal
-    public void processPassenger(){
+    public void processPassenger() throws AgentException {
         Passenger passenger = getPassenger();
         agent.processTicket(passenger);
+
+        test = new InPersonAgent();
+
     }
 
 }
