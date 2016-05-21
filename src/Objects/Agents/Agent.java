@@ -42,7 +42,9 @@ public class Agent {
 
         long temp = modifyTimeToProcess(passenger);
 
-        if(passenger.getRequireManager()) throw new AgentException(AgentException.ErrorCode.SUPERVISOR_REQUIRED_FOR_OPERATION);
+        if(passenger.getRequireManager())
+            throw new AgentException
+                    (AgentException.ErrorCode.SUPERVISOR_REQUIRED_FOR_OPERATION);
         return temp;
 
     }

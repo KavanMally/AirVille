@@ -43,7 +43,11 @@ public class Passenger implements Comparable<Passenger> {
 
     }
 
-    public Passenger(boolean isFrequentFlier, boolean slowProcess, boolean requireManager, boolean needTechSupport, boolean requireHuman){
+    public Passenger(boolean isFrequentFlier,
+                     boolean slowProcess,
+                     boolean requireManager,
+                     boolean needTechSupport,
+                     boolean requireHuman){
         this.isFrequentFlier = isFrequentFlier;
         this.slowProcess = slowProcess;
         this.requireManager = requireManager;
